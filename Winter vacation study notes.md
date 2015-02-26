@@ -47,3 +47,157 @@ Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow�
 Dao层使用Hibernate
 Hibernate是一种Java语言下的对象关系映射解决方案。它为面向对象的领域模型到传统的关系型数据库的映射，提供了一个使用方便的框架。Hibernate也是目前Java开发中最为流行的数据库持久层框架，现已归JBOSS所有。它的设计目标是将软件开发人员从大量相同的数据持久层相关编程工作中解放出来。无论是从设计草案还是从一个遗留数据库开始，开发人员都可以采用Hibernate。
 Hibernate不仅负责从Java类到数据库表的映射（还包括从Java数据类型到SQL数据类型的映射），还提供了面向对象的数据查询检索机制，从而极大地缩短的手动处理SQL和JDBC上的开发时间。
+
+
+####下面是一些学习笔记
+
+######基于注解的权限认证
+电影评论网站需要后台去管理，有后台必然有权限认证。
+最近突然发现Java注解真心神器。一行简单的注解可以搞定很多事情，非常便于使用。
+
+注解可以看成是一个接口，注解实例就是一个实现了该接口的动态代理类。 注解大多是用做对某个类、方法、字段进行说明，标识的。以便在程序运行期间我们通 过反射获得该字段或方法的注解的实例，来决定该做些什么处理或不该进行什么处理。
+
+定义和调用注解的方法都很简单，这里就不说明了。
+
+重点说明下怎么让注解work起来。
+
+注解本身并不会做任何事情，它需要工具支持才会有用。比如JUnit4的@Test注解自身不会做任何事情，JUnit会识别并调用所有标识为@Test的方法，这种识别处理一般是采用代理模式，通过反射来调用。
+
+大致代码如下
+
+    import java.lang.annotation.Annotation;
+    import java.lang.reflect.Method;
+    
+    
+    public class ReadAnnotationInfoTest {
+    public static void main(String[] args) throws Exception {
+        //测试AnnotationTest类，得到此类的类对象
+        Class c = Class.forName(&quot;className&quot;);
+    
+        //获取该类所有声明的方法
+        Method[] methods = c.getDeclaredMethods();
+    
+        //声明注解集合
+        Annotation[] annotations;
+    
+        //遍历所有的方法得到各方法上面的注解信息
+        for (Method method : methods) {
+            //获取每个方法上面所声明的所有注解信息
+            annotations = method.getDeclaredAnnotations();
+    
+            //再遍历所有的注解，打印其基本信息
+            for (Annotation an : annotations) {
+                System.out.println("方法名为：" + method.getName() +  "其上面的注解为：" +
+                    an.annotationType().getSimpleName());
+    
+                Method[] meths = an.annotationType().getDeclaredMethods();
+    
+                //遍历每个注解的所有变量
+                for (Method meth : meths) {
+                    System.out.println("注解的变量名为：" + meth.getName());
+                }
+            }
+        }
+    }  
+	
+
+这个类可以得到类上的所有注解信息。 然后就可以根据需要植入代码段看来实现功能了。
+
+用注解实现权限认证可以如下：
+
+	public abstract class AbstractAuthenticationFilter extends HandlerInterceptorAdapter {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HandlerMethod method = (HandlerMethod) handler;
+        FreeAccess freeAccess = method.getMethodAnnotation(FreeAccess.class);
+        if (freeAccess != null) {
+            return true;
+        }
+        Set<Privilege> priv = new HashSet<>();
+        PrivilegeRequired pr = method.getClass().getAnnotation(PrivilegeRequired.class);
+        if (pr != null && pr.value() != null && pr.value().length > 0) {
+            priv.addAll(Arrays.asList(pr.value()));
+        }
+        pr = method.getMethodAnnotation(PrivilegeRequired.class);
+        if (pr != null && pr.value() != null && pr.value().length > 0) {
+            priv.addAll(Arrays.asList(pr.value()));
+        }
+
+        Privilege[] privileges = priv.toArray(new Privilege[priv.size()]);
+
+        boolean loginRequired = privileges.length > 0
+                || AnnotationUtils.findAnnotation(method.getBean().getClass(), LoginRequired.class) != null
+                || method.getMethodAnnotation(LoginRequired.class) != null;
+        if (loginRequired && !checkLogin(request)) {
+
+            String url = request.getRequestURI();
+            String queryString = request.getQueryString();
+            if (StringUtils.isNotEmpty(queryString)) {
+                url = url + "?" + queryString;
+            }
+            url = new String(Base64.encodeBase64(url.getBytes()));
+            url = URLEncoder.encode(url);
+
+            //如果是ajax请求响应头会有，x-requested-with
+            if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
+                response.setHeader("sessionStatus", "timeout");//在响应头设置session状态
+                return false;
+            }
+
+            response.setStatus(401);
+            response.sendRedirect("/login?redirect=" + url);
+            return false;
+        }
+        if (privileges.length > 0 && !checkPrivileges(request, privileges)) {
+            response.setStatus(403);
+            response.sendRedirect("/403");
+        }
+        return true;
+    }
+
+
+    public abstract boolean checkLogin(HttpServletRequest request);
+
+    public abstract boolean checkPrivileges(HttpServletRequest request, Privilege... privileges);
+	}
+
+
+大致意思是继承springmvc的HandlerInterceptorAdapter，然后拦截每个请求，判断是否有@LoginRequired或者PrivilegeRequired的注解，如果有， 记录下当前uri（base64 URLEncoder之后），然后401到登陆界面，登陆成功后再跳回来。
+
+可以在一个需要验证的Controller class上写上@LoginRequired，然后整个Controller的所有method都会去做权限验证。 可以用@FreeAccess 去排除不需要的的method。
+
+
+
+######Nginx得到反向代理前的真实IP
+
+Java Servlet可以通过request.getRemoteAddr()得到请求的客户端的IP
+
+现在一般情况下都不是直接用Tomcat或者Jetty这样的web容器，都会在前面加上Nginx或者Tengine之类的静态Web容器来反向代理。
+由于经过了Nginx转发请求，通过request.getRemoteAddr()得到的IP就成了127.0.0.1
+可以在Nginx配置里加上 
+ 
+
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+
+这个意思是在nginx做反向代理的时候把代理前的地址放到http header 的 x-forwarded-for 中，然后如下获取：
+	 public static String getIP(HttpServletRequest request) {
+        String IP = request.getRemoteAddr();
+        String forwarded = request.getHeader("x-forwarded-for");
+
+        if (forwarded != null) {
+            forwarded = forwarded.split(",", 2)[0];
+            if (pattern.matcher(forwarded).matches()) {
+                return forwarded;
+            }
+        }
+        if (pattern.matcher(IP).matches()) {
+            return IP;
+        } else {
+            logger.warn("IP is not valid.[IP=" + IP + "]");
+            return "";
+        }
+    }
+
+
+
