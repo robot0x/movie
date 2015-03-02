@@ -9,6 +9,15 @@
     <url>http://maven.apache.org</url>
 
 
+    <properties>
+        <project.build.version>1.0-SNAPSHOT</project.build.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.1.5.RELEASE</spring.version>
+        <hibernate.version>4.3.8.Final</hibernate.version>
+    </properties>
+
+
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -21,6 +30,16 @@
             <artifactId>lombok</artifactId>
             <version>1.16.2</version>
         </dependency>
+
+        <!--  spring  -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
 
 

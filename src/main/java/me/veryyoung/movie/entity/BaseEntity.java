@@ -1,4 +1,4 @@
-package me.veryyoung.movie.entities;
+package me.veryyoung.movie.entity;
 
 import lombok.Data;
 
