@@ -5,7 +5,7 @@
     <artifactId>movie</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>movie Maven Webapp</name>
+    <name>movie</name>
     <url>http://maven.apache.org</url>
 
 
