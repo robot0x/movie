@@ -15,4 +15,6 @@ public class User extends BaseEntity {
 
     private boolean isAdmin;
 
+    private boolean enable;
+
 }
