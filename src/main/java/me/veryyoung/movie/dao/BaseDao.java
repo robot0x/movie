@@ -23,7 +23,7 @@ public abstract class BaseDao<T> {
 
 
     public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
 
     public List<T> findAll() throws DataAccessException {

@@ -62,22 +62,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <!-- 配置事务，使用代理的方式 -->
-    <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
-          abstract="true">
-        <property name="transactionManager" ref="transactionManager"></property>
-        <property name="transactionAttributes">
-            <props>
-                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
-                <prop key="modify*">PROPAGATION_REQUIRED,-myException</prop>
-                <prop key="del*">PROPAGATION_REQUIRED</prop>
-                <prop key="*">PROPAGATION_REQUIRED</prop>
-            </props>
-        </property>
-    </bean>
 
-
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
 
 </beans>

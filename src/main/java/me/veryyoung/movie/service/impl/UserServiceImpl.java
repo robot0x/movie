@@ -6,13 +6,11 @@ import me.veryyoung.movie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 
 /**
  * Created by veryyoung on 2015/3/3.
  */
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
