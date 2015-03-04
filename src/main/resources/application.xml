@@ -2,11 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.2.xsd
-       http://www.springframework.org/schema/task 		http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
        default-lazy-init="true">
 
     <context:component-scan base-package="me.veryyoung.movie"/>
@@ -42,11 +41,11 @@
 
     <!-- 配置SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
             </props>
@@ -64,7 +63,8 @@
     </bean>
 
     <!-- 配置事务，使用代理的方式 -->
-    <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+    <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+          abstract="true">
         <property name="transactionManager" ref="transactionManager"></property>
         <property name="transactionAttributes">
             <props>
@@ -77,7 +77,7 @@
     </bean>
 
 
-    <task:annotation-driven/>
+    <tx:annotation-driven/>
 
 
 </beans>

@@ -1,13 +1,21 @@
 package me.veryyoung.movie.dao;
 
+
 import me.veryyoung.movie.entity.User;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 
 /**
  * Created by veryyoung on 2015/3/3.
  */
 
-public interface UserDao {
+@Repository
+@Transactional
+public class UserDao extends BaseDao<User> {
 
-    public void create(User user);
+    public UserDao() {
+        super(User.class);
+    }
 
 }
