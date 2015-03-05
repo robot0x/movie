@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Enable this if you want to see Logback configuring itself -->
+  <!--
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+    -->
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/access.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>access_%d{yyyy-MM-dd}.log</fileNamePattern>
+
+      <!-- keep 90 days' worth of history -->
+      <maxHistory>90</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%h %l %u %t "%r" %s %b "%i{Referer}" "%i{User-Agent}"</pattern>
+    </encoder>
+  </appender>
+
+  <appender-ref ref="FILE" />
+</configuration>

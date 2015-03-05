@@ -20,6 +20,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping("/")
     public String index() {
+        logger.info("index");
         return "/index";
     }
 
@@ -43,7 +44,7 @@ public class HomeController extends BaseController {
     public ModelAndView register(User user) {
         ModelAndView modelAndView = new ModelAndView("/register");
 
-        System.out.println("user:" + user);
+        logger.info("user:{}", user);
         userService.create(user);
 
         return modelAndView;
