@@ -15,16 +15,18 @@ public abstract class BaseDao<T> {
     @Autowired
     private SessionFactory sessionFactory;
 
+
+    public Session getCurrentSession() {
+        return sessionFactory.openSession();
+    }
+
+
     private Class entityClass;
 
     public BaseDao(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
-
-    public Session getCurrentSession() {
-        return sessionFactory.openSession();
-    }
 
     public List<T> findAll() throws DataAccessException {
         return getCurrentSession().createCriteria(entityClass).list();

@@ -20,7 +20,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping("/")
     public String index() {
-        logger.info("index");
+        logger.info("userList:{}",userService.findAll());
         return "/index";
     }
 
