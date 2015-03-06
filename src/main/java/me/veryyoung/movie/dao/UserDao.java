@@ -3,7 +3,7 @@ package me.veryyoung.movie.dao;
 
 import me.veryyoung.movie.entity.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 
 /**
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Repository
-@Transactional
 public class UserDao extends BaseDao<User> {
 
     public UserDao() {

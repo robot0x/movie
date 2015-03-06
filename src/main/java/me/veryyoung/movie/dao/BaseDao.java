@@ -2,6 +2,7 @@ package me.veryyoung.movie.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
@@ -17,7 +18,7 @@ public abstract class BaseDao<T> {
 
 
     public Session getCurrentSession() {
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 
@@ -29,7 +30,11 @@ public abstract class BaseDao<T> {
 
 
     public List<T> findAll() throws DataAccessException {
-        return getCurrentSession().createCriteria(entityClass).list();
+        Session session = getCurrentSession();
+        Transaction trans = session.beginTransaction();
+        List<T> resultList = getCurrentSession().createCriteria(entityClass).list();
+        trans.commit();
+        return resultList;
     }
 
     public T find(String id) {
@@ -37,7 +42,10 @@ public abstract class BaseDao<T> {
     }
 
     public void create(T t) {
-        getCurrentSession().save(t);
+        Session session = getCurrentSession();
+        Transaction trans = session.beginTransaction();
+        session.save(t);
+        trans.commit();
     }
 
     public void update(T t) {
