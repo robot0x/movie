@@ -5,7 +5,6 @@ import me.veryyoung.movie.entity.User;
 import org.springframework.stereotype.Repository;
 
 
-
 /**
  * Created by veryyoung on 2015/3/3.
  */
