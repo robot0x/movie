@@ -23,12 +23,13 @@ public class User extends BaseEntity {
     @Column(length = 20)
     private String userName;
 
-    @Column(length = 20)
+    @Column(length = 32)
     private String password;
 
 
     private boolean isAdmin;
 
     private boolean enable;
+
 
 }

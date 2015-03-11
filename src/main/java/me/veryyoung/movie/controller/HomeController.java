@@ -2,6 +2,7 @@ package me.veryyoung.movie.controller;
 
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping("/")
     public String index() {
-        logger.info("userList:{}",userService.findAll());
+        logger.info("userList:{}", userService.findAll());
         return "/index";
     }
 
@@ -45,6 +46,7 @@ public class HomeController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("/register");
 
         logger.info("user:{}", user);
+        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         userService.create(user);
 
         return modelAndView;
