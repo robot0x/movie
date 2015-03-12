@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>首页</title>
+    <title>首页 - ${appName}</title>
 </head>
 <body>
 <h1>这是首页</h1>

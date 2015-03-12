@@ -15,7 +15,6 @@ import java.util.Date;
 @Table(name = "subject")
 public class Subject {
 
-
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
