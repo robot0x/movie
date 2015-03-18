@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  * 电影条目
@@ -51,7 +50,7 @@ public class Subject {
 
 
     //上映日期
-    private Date pubDate;
+    private String pubDate;
 
     //上映年份
     private short year;
@@ -70,12 +69,6 @@ public class Subject {
 
     //简介
     private String summary;
-
-    //预告片URL
-    private String trailers;
-
-    //电影剧照
-    private String photos;
 
 
 
