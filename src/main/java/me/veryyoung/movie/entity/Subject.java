@@ -1,9 +1,11 @@
 package me.veryyoung.movie.entity;
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -15,14 +17,10 @@ import java.util.Date;
 @Table(name = "subject")
 public class Subject {
 
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(length = 32)
-    private String id;
-
     //对应豆瓣电影的id
-    private String doubanId;
+    @Id
+    @Column(length = 7)
+    private String id;
 
     //标题
     private String title;
@@ -33,8 +31,11 @@ public class Subject {
     //又名
     private String aka;
 
-    //评分
-    private float rating;
+    //评分人数
+    private int ratingCount;
+
+    //总评分
+    private double totalRating;
 
     //宣传海报
     private String image;
@@ -75,6 +76,7 @@ public class Subject {
 
     //电影剧照
     private String photos;
+
 
 
 }
