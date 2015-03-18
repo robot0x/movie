@@ -2,6 +2,7 @@ package me.veryyoung.movie.controller;
 
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.service.UserService;
+import me.veryyoung.movie.utils.DoubanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping("/")
     public String index() {
-        logger.info("userList:{}", userService.findAll());
+        DoubanUtils.getSubject("6875263");
         return "/index";
     }
 
