@@ -26,6 +26,14 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter" /><!-- json转换器 -->
+            </list>
+        </property>
+    </bean>
+
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
