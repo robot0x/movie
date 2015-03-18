@@ -1,6 +1,9 @@
-package me.veryyoung.movie.utils;
+package me.veryyoung.movie.service.impl;
 
+import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Subject;
+import me.veryyoung.movie.service.BaseService;
+import me.veryyoung.movie.service.DoubanService;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -8,27 +11,35 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 /**
  * Created by veryyoung on 2015/3/18.
  */
-public class DoubanUtils {
+@Service
+public class DoubanServiceImpl extends BaseService implements DoubanService {
 
-    private static Logger logger = LoggerFactory.getLogger(DoubanUtils.class);
+    @Autowired
+    private SubjectDao subjectDao;
 
+    @Override
+    public Subject find(String id) {
+        Subject subject = subjectDao.find(id);
 
-    public static Subject getSubject(String id) {
+        if (null != subject) {
+            return subject;
+        }
+
         HttpClient httpClient = HttpClientBuilder.create().build();
         String url = "https://api.douban.com/v2/movie/subject/" + id + "?apikey=0df993c66c0c636e29ecbb5344252a4a";
         HttpGet httpGet = new HttpGet(url);
         //创建响应处理器处理服务器响应内容
         ResponseHandler<String> responseHandler = new BasicResponseHandler();
         JSONObject jsonObject;
-        Subject subject = null;
+        subject = null;
         try {
             String responseBody = httpClient.execute(httpGet, responseHandler);
             jsonObject = new JSONObject(responseBody);
@@ -107,14 +118,14 @@ public class DoubanUtils {
             for (int i = 1; i < length; i++) {
                 sb.append("/").append(jsonArray.get(i));
             }
-            subject.setGenres(sb.toString());
+            subject.setCountries(sb.toString());
 
             subject.setSummary(jsonObject.getString("summary"));
 
+            subjectDao.create(subject);
 
+            logger.debug("add subject [{}] from douban", subject);
 
-            logger.info("responseBody:{}", responseBody);
-            logger.info("subject:{}", subject);
         } catch (IOException e) {
             e.printStackTrace();
         }

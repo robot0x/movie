@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by veryyoung on 2015/3/2.
  */
-public class BaseController {
+public abstract class BaseController {
 
     @Autowired
     protected HttpServletRequest request;

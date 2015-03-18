@@ -68,8 +68,8 @@ public class Subject {
     private String countries;
 
     //简介
+    @Column(length = 1000)
     private String summary;
-
 
 
 }
