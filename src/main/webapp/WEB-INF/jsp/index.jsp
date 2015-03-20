@@ -1,15 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<link rel="icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico"
-      mce_href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/icon">
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico"
-      mce_href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/icon">
-<html lang="zh">
+<html>
 <head>
     <title>首页 - ${appName}</title>
+    <%@include file="common/head.jspf" %>
+    <%@include file="common/topNav.jspf" %>
+
+
 </head>
-<body>
+<body id="page-account-index">
 <h1>这是首页</h1>
 
+
+<%@include file="common/bottom.jspf" %>
+<%@include file="common/footer.jspf" %>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<!--Foot Starts-->
+<div class="foot">
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+            <!-- Foot Item -->
+            <div class="foot-item">
+                <!-- Heading -->
+                <div>
+                    <ul class="list-inline">
+                        <!-- Link -->
+                        <li><span>友情链接：</span></li>
+                        <li><a href="http://veryyoung.me/" target="_blank">VERYYOUNG</a></li>
+                        <li><a href="http://www.minishine.com/" target="_blank">路人-戊</a></li>
+                        <li><a href="http://www.zhenghang.info/" target="_blank">COCO</a></li>
+                        <li><a href="http://movie.douban.com/" target="_blank">豆瓣电影</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Foot Ends-->
+<footer>
+    <div class="container">
+        <div class="pull-right text-version">© 2015 ${appName}&nbsp;版权所有</div>
+    </div>
+</footer>
+</div>
+
+<script src="${pageContext.request.contextPath}/sea.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/bootstrap.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/assets/js/utility.js" type="text/javascript"></script>
+<script type="text/javascript">
+    seajs.use('utility', function(Utility){
+        var utility = new Utility();
+    });
+</script>

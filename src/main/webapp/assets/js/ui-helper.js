@@ -30,7 +30,6 @@
 
         var opt = {content: content, container:'body'};
         if(pos) opt.placement = pos;
-        else if(window.RmbboxApp && window.RmbboxApp['isNarrow']) opt.placement = 'bottom'; //narrow browser
 
         $(ele).popover(opt);
         $(ele).popover('show');

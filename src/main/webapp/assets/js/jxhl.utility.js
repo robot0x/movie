@@ -81,12 +81,6 @@ jxhl.extension(function () {
         headers = headers||{};
 
         //NOTE:mobile version token validation
-        if(window.RmbboxH5App.headers){
-            for(var n in window.RmbboxH5App.headers){
-                headers[n] = window.RmbboxH5App.headers[n];
-            }
-        }
-
         if(typeof(jQuery)!="undefined"){
             console.log("Using jQuery XHR..");
             //JSON parse has an issue with json type, such as {firstname:"Jeff",lastname:"Xiao"} will cause a parsererror
