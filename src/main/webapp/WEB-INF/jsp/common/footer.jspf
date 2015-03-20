@@ -18,23 +18,20 @@
                         <li><a href="http://movie.douban.com/" target="_blank">豆瓣电影</a></li>
                     </ul>
                 </div>
+                <div class="container">
+                    <div class="pull-right text-version">© 2015 ${appName}&nbsp;版权所有</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--Foot Ends-->
-<footer>
-    <div class="container">
-        <div class="pull-right text-version">© 2015 ${appName}&nbsp;版权所有</div>
-    </div>
-</footer>
-</div>
+
 
 <script src="${pageContext.request.contextPath}/sea.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/bootstrap.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/assets/js/utility.js" type="text/javascript"></script>
 <script type="text/javascript">
-    seajs.use('utility', function(Utility){
+    seajs.use('utility', function (Utility) {
         var utility = new Utility();
     });
 </script>

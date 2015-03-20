@@ -14,7 +14,6 @@
 <h1>这是首页</h1>
 
 
-<%@include file="common/bottom.jspf" %>
 <%@include file="common/footer.jspf" %>
 </body>
 </html>
