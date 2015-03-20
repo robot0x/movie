@@ -13,7 +13,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico"
       mce_href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/icon">
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="${pageContext.request.contextPath}/assets//css/bootstrap-theme.min.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/assets/css/bootstrap-theme.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/assets/css/app.css" rel="stylesheet"/>
 
