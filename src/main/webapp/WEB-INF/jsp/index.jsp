@@ -11,7 +11,7 @@
 
 </head>
 <body id="page-account-index">
-<h1>这是首页</h1>
+<h1>共${subjects.size()}部热映影片</h1>
 
 
 <%@include file="common/footer.jspf" %>

@@ -1,5 +1,6 @@
 package me.veryyoung.movie.controller;
 
+import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -19,9 +20,15 @@ public class HomeController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SubjectDao subjectDao;
+
+
     @RequestMapping("/")
-    public String index() {
-        return "/index";
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("/index");
+        modelAndView.addObject("subjects", subjectDao.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
