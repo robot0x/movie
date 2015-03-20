@@ -1,0 +1,48 @@
+/* 时间轴布局
+----------------------------------------------------------------------------------------------------------------------*/
+.timeLayout{ width:980px; margin-top:20px; clear:both; overflow:hidden; position:relative;}
+.timeLayout .midLine{ width:3px; height:100%; _height:926px; position:absolute; left:489px; background:#ccb18b;}
+.time-item{ width:474px; height:258px; margin-top:30px; background:#fafafa; position:relative;}
+.time-list{ position:relative; z-index:10;}
+.time-list .left{ float:left; clear:left}
+.time-list .right{ float:right; clear:right}
+.time-item:first-child{ margin-top:0;}
+.time-item:first-child + .right {margin-top: 40px;}
+
+.time-item .timedot{ position:absolute; top:15px; background:#fff; color:#45729b; font-size:24px; _font-size:13px; text-align:center; text-shadow:#45729b 0 0 1px }
+.time-list .left .timedot{ right:-24px; _right:-23px;}
+.time-list .right .timedot{ left:-23px; _left: -22px;}
+
+.time-item .time-arr{ position: absolute; z-index: 10; border-color: transparent #fafafa; border-style: solid dashed; font-size: 0; height: 0; width: 0; line-height: 0;}
+.time-list .left .time-arr{top: 2px; left: -10px;  border-width: 8px 0 8px 10px;}
+.time-list .right .time-arr{top: 2px; left: 14px; border-width: 8px 10px 8px 0;}
+
+.time-item .item-inner{ padding:20px;}
+
+.time-item .item-inner .filmInfo { width:260px;}
+.time-item .item-inner .filmInfo h3{ font: bold 17px/1.2 '微软雅黑';}
+.item-inner .filmInfo p span{ width:220px;}
+.item-inner .filmInfo p a:first-child{ padding-left:0px;}
+.item-inner .filmInfo p.score{ line-height:23px; width:100%;}
+.item-inner .filmInfo p.score b{ font: normal 23px/1 Verdana, Geneva, sans-serif; padding:0 5px;}
+
+.item-inner .filmInfo .btns{ margin-top:10px;}
+.filmInfo .mdbColor{color:#9c7445}
+
+.item-inner .scoreDial{ left:360px; top:15px;}
+.item-inner #circ_b .inact-area-l{ background:#fafafa; border-left:30px solid #fafafa}
+.item-inner #circ_b .inact-area-r{ background:#fafafa; border-right:30px solid #fafafa}
+.item-inner .scoreDial #circ_c{ background:#fafafa;}
+
+/* 侧边时间线
+----------------------------------------------------------------------------------------------------------------------*/
+.timeLine{ position:absolute; width:60px; left:-80px; top:104px; text-align:right; font-family:"微软雅黑"; *width:64px; *top:120px}
+.timeLine dl{ clear:both; padding-right:10px; line-height:22px; margin-bottom:1px; border-right:6px solid #9c7445; color:#9c7445; white-space:nowrap; cursor:pointer}
+.timeLine dt,
+.timeLine dd{ clear:both; height:22px; overflow:hidden; color:#a8a8a8}
+.timeLine dt a{ color:#9c7445;}
+.timeLine dl:hover{border-color:#599b45}
+.timeLine dl.current{ border-color:#45729B;}
+.timeLine dl.current dt{ font-size:16px; font-weight:bold; color:#45729B;}
+.timeLine dd.current{ color:#45729B; font-size:15px; font-weight:bold;}
+.timeLine.affix { position: fixed; left:20px; top:50px; z-index:800;}
