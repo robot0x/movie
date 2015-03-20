@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="jxhl" targetNamespace="http://halo-studio.com/jxhl" elementFormDefault="qualified" xmlns="http://halo-studio.com/jxhl" xmlns:mstns="http://halo-studio.com/jxhl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="jxhl-base" mixed="true">
+        <xs:attribute name="local_var" type="jxhl-local-var"></xs:attribute>
+        <xs:anyAttribute></xs:anyAttribute>
+    </xs:complexType>
+    <xs:complexType name="jxhl-htmltagbase">
+        <xs:complexContent>
+            <xs:extension base="jxhl-base">
+                <xs:choice>
+                    <xs:group ref="group-htmltag" maxOccurs="unbounded">
+                    </xs:group>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="jxhl-dock">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="top" />
+            <xs:enumeration value="left" />
+            <xs:enumeration value="right" />
+            <xs:enumeration value="bottom" />
+            <xs:enumeration value="center" />
+            <xs:enumeration value="fill" />
+            <xs:enumeration value="fix" />
+            <xs:enumeration value="float" />
+            <xs:enumeration value="auto" />
+            <xs:enumeration value="none" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="jxhl-visible">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="0" />
+            <xs:enumeration value="1" />
+            <xs:enumeration value="false" />
+            <xs:enumeration value="true" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="jxhl-local-var">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^=]?[0-9a-zA-Z_$]*" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="jxhl-control" mixed="false">
+        <xs:complexContent>
+            <xs:extension base="jxhl-base">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:group ref="group-element" maxOccurs="unbounded"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attributeGroup ref="group-attribute">
+                </xs:attributeGroup>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="jxhl-html">
+        <xs:complexContent mixed="false">
+            <xs:extension base="jxhl-base">
+                <xs:group ref="group-htmltag" maxOccurs="unbounded">
+                </xs:group>
+                <xs:attributeGroup ref="group-attribute">
+                </xs:attributeGroup>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="jxhl-image">
+        <xs:complexContent mixed="false">
+            <xs:extension base="jxhl-base">
+                <xs:attributeGroup ref="group-attribute">
+                </xs:attributeGroup>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="jxhl-frame">
+        <xs:complexContent mixed="true">
+            <xs:extension base="jxhl-base">
+                <xs:attributeGroup ref="group-attribute">
+                </xs:attributeGroup>
+                <xs:attribute name="frame_scrolling">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value=""></xs:enumeration>
+                            <xs:enumeration value="auto"></xs:enumeration>
+                            <xs:enumeration value="yes"></xs:enumeration>
+                            <xs:enumeration value="no"></xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="src" type="xs:string"></xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="jxhl-label">
+        <xs:complexContent mixed="true">
+            <xs:extension base="jxhl-base">
+                <xs:attributeGroup ref="group-attribute">
+                </xs:attributeGroup>
+                <xs:attribute name="src" type="xs:string"></xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:group name="group-element">
+        <xs:choice>
+            <xs:element name="html" type="jxhl-html" />
+            <xs:element name="image" type="jxhl-image" />
+            <xs:element name="label" type="jxhl-label"></xs:element>
+            <xs:element name="frame" type="jxhl-frame" />
+            <xs:element name="panel" type="jxhl-control" />
+        </xs:choice>
+    </xs:group>
+    <xs:group name="group-htmltag">
+        <xs:choice>
+            <xs:element name="div">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="table" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="span" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="tr" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="td" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="label" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="nav" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="audio" type="jxhl-htmltagbase">
+                <xs:complexType>
+                    <xs:anyAttribute/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="video" type="jxhl-htmltagbase" />
+            <xs:element name="iframe" type="jxhl-htmltagbase" />
+            <xs:element name="a" type="jxhl-htmltagbase" />
+            <xs:element name="strong" type="jxhl-htmltagbase" />
+            <xs:element name="ul" type="jxhl-htmltagbase" />
+            <xs:element name="ol" type="jxhl-htmltagbase" />
+            <xs:element name="li" type="jxhl-htmltagbase" />
+            <xs:element name="meta" type="jxhl-htmltagbase" />
+            <xs:element name="link" type="jxhl-htmltagbase" />
+            <xs:element name="script" type="jxhl-htmltagbase" />
+            <xs:element name="title" type="jxhl-htmltagbase" />
+            <xs:element name="code" type="jxhl-htmltagbase" />
+            <xs:element name="pre" type="jxhl-htmltagbase" />
+            <xs:element name="dl" type="jxhl-htmltagbase" />
+            <xs:element name="dd" type="jxhl-htmltagbase" />
+            <xs:element name="dt" type="jxhl-htmltagbase" />
+            <xs:element name="input" type="jxhl-htmltagbase" />
+            <xs:element name="select" type="jxhl-htmltagbase" />
+            <xs:element name="footer" type="jxhl-htmltagbase" />
+            <xs:element name="br" type="jxhl-htmltagbase" />
+        </xs:choice>
+    </xs:group>
+    <xs:attributeGroup name="group-attribute">
+        <xs:attribute name="id" type="xs:string"></xs:attribute>
+        <xs:attribute name="dock" type="jxhl-dock" use="required"></xs:attribute>
+        <xs:attribute name="width" type="xs:int"></xs:attribute>
+        <xs:attribute name="height" type="xs:int"></xs:attribute>
+        <xs:attribute name="left" type="xs:int"></xs:attribute>
+        <xs:attribute name="top" type="xs:int"></xs:attribute>
+        <xs:attribute name="css_name" type="xs:string"></xs:attribute>
+        <xs:attribute name="css_text" type="xs:string"></xs:attribute>
+        <xs:attribute name="visible" type="jxhl-visible"></xs:attribute>
+        <xs:attribute name="border_width" type="xs:string"></xs:attribute>
+        <xs:attribute name="margin" type="xs:string"></xs:attribute>
+        <xs:attribute name="opacity" type="xs:decimal"></xs:attribute>
+    </xs:attributeGroup>
+    
+    <xs:element name="jxhl">
+        <xs:complexType mixed="true">
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="group-element" />
+                <xs:element name="runnable" type="xs:string"></xs:element>
+            </xs:choice>
+        </xs:complexType>
+        
+        <!--<xs:element name="panel"></xs:element>
+        <xs:element name="label"></xs:element>
+        <xs:element name="html"></xs:element>
+        <xs:element name="frame"></xs:element>
+        <xs:element name="image"></xs:element>-->
+    </xs:element>
+    
+</xs:schema>
