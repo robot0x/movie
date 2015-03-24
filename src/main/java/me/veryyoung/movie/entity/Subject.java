@@ -18,7 +18,7 @@ public class Subject {
 
     //对应豆瓣电影的id
     @Id
-    @Column(length = 7)
+    @Column(length = 8)
     private String id;
 
     //标题
