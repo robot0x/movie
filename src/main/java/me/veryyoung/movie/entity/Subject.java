@@ -27,9 +27,6 @@ public class Subject {
     //原名
     private String originalTitle;
 
-    //又名
-    private String aka;
-
     //评分人数
     private int ratingCount;
 

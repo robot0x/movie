@@ -48,22 +48,13 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             subject.setTitle(jsonObject.getString("title"));
             subject.setOriginalTitle(jsonObject.getString("original_title"));
 
-
-            JSONArray jsonArray = jsonObject.getJSONArray("aka");
-            int length = jsonArray.length();
-            StringBuilder sb = new StringBuilder(jsonArray.get(0).toString());
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.get(i));
-            }
-            subject.setAka(sb.toString());
-
             subject.setRatingCount(jsonObject.getInt("ratings_count"));
             subject.setTotalRating(subject.getRatingCount() * jsonObject.getJSONObject("rating").getDouble("average"));
             subject.setImage(jsonObject.getJSONObject("images").getString("large"));
 
-            jsonArray = jsonObject.getJSONArray("directors");
-            length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
+            JSONArray jsonArray = jsonObject.getJSONArray("directors");
+            int length = jsonArray.length();
+            StringBuilder sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
             for (int i = 1; i < length; i++) {
                 sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
             }
