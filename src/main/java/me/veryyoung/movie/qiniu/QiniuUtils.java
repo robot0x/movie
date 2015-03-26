@@ -26,11 +26,11 @@ public class QiniuUtils {
 
     private static final String BUCKET_NAME = "movie";
 
-    private void uploadStream(FileInputStream fis) throws AuthException, JSONException, FileNotFoundException {
+    public static void uploadStream(FileInputStream fis, String fileName) throws AuthException, JSONException, FileNotFoundException {
         Mac mac = new Mac(SECRET_KEY, SECRET_KEY);
         PutPolicy putPolicy = new PutPolicy(BUCKET_NAME);
         String upToken = putPolicy.token(mac);
-        PutRet ret = ResumeableIoApi.put(fis, upToken, null, null);
+        PutRet ret = ResumeableIoApi.put(fis, upToken, fileName, null);
         logger.info("ret:{}", ret);
     }
 }
