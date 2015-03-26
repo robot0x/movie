@@ -28,7 +28,7 @@
                              src="${subject.image}"
                              style="visibility: visible; display: inline;"></a></div>
                     <div class="fl pl15 filmInfo">
-                        <h3><a class="mdbColor" href="/suject/${subject.id}"
+                        <h3><a class="mdbColor" href="/subject/${subject.id}"
                                target="_blank">${subject.pubDate}上映《${subject.title}》</a></h3>
 
                         <p class="score"><label>评分:</label><span><b

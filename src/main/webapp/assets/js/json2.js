@@ -1,5 +1,4 @@
 /**
- * Created by XiaoJunfeng on 14/11/10.
  *
  * Fix JSON for ie7 and down version of IE
  * From github https://github.com/douglascrockford/JSON-js/blob/master/json2.js

@@ -1,6 +1,3 @@
-/**
- * Created by XiaoJunfeng on 14/11/24.
- */
 ;define(function(require, exports, module) {
 
     /**
