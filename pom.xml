@@ -80,6 +80,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>6.1.9</version>
+        </dependency>
+
 
 
         <!-- log -->
