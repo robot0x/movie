@@ -20,9 +20,9 @@ public class QiniuUtils {
 
     private static Logger logger = LoggerFactory.getLogger(QiniuUtils.class);
 
-    private static final String ACCESS_KEY = "1OcsILqPu9A_YrO7bgAEBowPWwmjTfzt_zUoINRC";
+    public static final String ACCESS_KEY = "1OcsILqPu9A_YrO7bgAEBowPWwmjTfzt_zUoINRC";
 
-    private static final String SECRET_KEY = "BW1s2xfqoty1RRzNI4xhVMs6dt6i7zjf3FdbX9Ty";
+    public static final String SECRET_KEY = "BW1s2xfqoty1RRzNI4xhVMs6dt6i7zjf3FdbX9Ty";
 
     private static final String BUCKET_NAME = "movie";
 
