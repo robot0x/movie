@@ -33,8 +33,6 @@ public class Subject {
     //总评分
     private double totalRating;
 
-    //宣传海报
-    private String image;
 
     //导演
     private String directors;

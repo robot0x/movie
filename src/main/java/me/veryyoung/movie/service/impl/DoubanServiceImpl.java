@@ -2,6 +2,7 @@ package me.veryyoung.movie.service.impl;
 
 import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Subject;
+import me.veryyoung.movie.qiniu.QiniuUtils;
 import me.veryyoung.movie.service.BaseService;
 import me.veryyoung.movie.service.DoubanService;
 import org.apache.http.client.HttpClient;
@@ -50,7 +51,7 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
 
             subject.setRatingCount(jsonObject.getInt("ratings_count"));
             subject.setTotalRating(subject.getRatingCount() * jsonObject.getJSONObject("rating").getDouble("average"));
-            subject.setImage(jsonObject.getJSONObject("images").getString("large"));
+            QiniuUtils.uploadToQiniu(jsonObject.getJSONObject("images").getString("large"), id);
 
             JSONArray jsonArray = jsonObject.getJSONArray("directors");
             int length = jsonArray.length();

@@ -1,10 +1,5 @@
 package me.veryyoung.movie.test;
 
-import com.qiniu.api.auth.DigestAuthClient;
-import com.qiniu.api.auth.digest.Mac;
-import com.qiniu.api.net.CallRet;
-import com.qiniu.api.net.Client;
-import com.qiniu.api.net.EncodeUtils;
 import me.veryyoung.movie.qiniu.QiniuUtils;
 import org.junit.Test;
 
@@ -16,22 +11,8 @@ import java.io.IOException;
 public class QiniuTest {
 
     @Test
-    public void uploadStream() throws IOException {
-
-        String from = "http://i2.sinaimg.cn/IT/cr/2014/0209/1645509745.jpg";
-        String to = "movie:test.jpg";
-        String encodeFrom = EncodeUtils.urlsafeEncode(from);
-        String encodeTo = EncodeUtils.urlsafeEncode(to);
-        System.out.println(encodeTo);
-        String url = "http://iovip.qbox.me/fetch/" + encodeFrom + "/to/" + encodeTo;
-        System.out.println(url);
-        Mac mac = new com.qiniu.api.auth.digest.Mac(QiniuUtils.ACCESS_KEY, QiniuUtils.SECRET_KEY);
-        Client client = new DigestAuthClient(mac);
-        CallRet ret = client.call(url);
-        System.out.println(ret.response);
-        System.out.println(ret.statusCode);
-
-
+    public void testUploadToQiniu() throws IOException {
+        QiniuUtils.uploadToQiniu("http://img5.douban.com/view/movie_poster_cover/spst/public/p2239530046.jpg","25718082");
     }
 
 }

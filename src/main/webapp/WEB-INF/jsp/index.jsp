@@ -17,15 +17,16 @@
 
     <ul class="time-list">
         <c:forEach items="${subjects}" var="subject" varStatus="status">
-            <li class="time-item <c:choose><c:when test="${status.count%2==0}">right</c:when><c:otherwise>left</c:otherwise></c:choose>" style="margin-top: 0px;"><span class="timedot">● <em
+            <li class="time-item <c:choose><c:when test="${status.count%2==0}">right</c:when><c:otherwise>left</c:otherwise></c:choose>"
+                style="margin-top: 0px;"><span class="timedot">● <em
                     class="time-arr"></em></span>
 
                 <div class="item-inner">
-                    <div class="picArea"><a href="${subject.image}" class="fl" target="_blank">
+                    <div class="picArea"><a href="${qiniu}${subject.id}" class="fl" target="_blank">
                         <div class="loadmask"
                              style="position: absolute; width: 154px; height: 217px; display: none;"></div>
                         <img width="154" height="217"
-                             src="${subject.image}"
+                             src="${qiniu}${subject.id}"
                              style="visibility: visible; display: inline;"></a></div>
                     <div class="fl pl15 filmInfo">
                         <h3><a class="mdbColor" href="/subject/${subject.id}"
