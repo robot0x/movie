@@ -113,6 +113,11 @@ public class HomeController extends BaseController {
         }
     }
 
+    @RequestMapping("logout")
+    public String logout() {
+        request.getSession().invalidate();
+        return "redirect:/";
+    }
 
 
 }
