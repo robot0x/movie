@@ -275,14 +275,14 @@ a, a:hover {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065)
 }
 
-.navbar .brand {
+.brand {
     display: block;
     float: left;
     padding: 15px 20px 15px;
     margin-left: -20px;
     font-size: 20px;
     font-weight: 200;
-    color: #fff;
+    color: #93A8BE;
     text-shadow: 0 1px 0 #080808
 }
 
@@ -303,6 +303,9 @@ a, a:hover {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px
+}
+#search{
+
 }
 
 .navbar .nav {

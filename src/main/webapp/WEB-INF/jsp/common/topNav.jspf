@@ -25,7 +25,7 @@
                         <c:when test="${SessionUtils.user != null}">
                             <li>
                                 <a class="link-signin" href="/account">
-                                    <i class="fa-user fa-fw"></i><font id="nav_nickname">
+                                    <i class="fa fa-user fa-fw"></i><font id="nav_nickname">
                                     欢迎${SessionUtils.user.userName}
                                 </font>
                                 </a>
@@ -55,10 +55,7 @@
                     <form class="navbar-search" method="get" action="/search" name="search_form">
                         <div class="input-append">
                             <input id="search_input" type="text" name="key" placeholder="匆匆那年" data-provide="typeahead"
-                                   class="typeahead search-query" autocomplete="off"
-                                   style="margin:0;border-radius:15px 0 0 15px; width:120px; color:#666;">
-                            <button style="border-radius:0 15px 15px 0 ;" type="submit" class="btn btn-primary"><i
-                                    class="fa fa-search fa-fw"></i></button>
+                                   class="search-query" autocomplete="off">
                         </div>
                     </form>
                 </div>
