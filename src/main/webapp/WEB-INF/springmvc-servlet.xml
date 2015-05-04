@@ -45,5 +45,9 @@
 
     <context:annotation-config/>
 
+    <mvc:interceptors>
+        <bean class="me.veryyoung.movie.web.AuthenticationFilter"></bean>
+    </mvc:interceptors>
+
 
 </beans>

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -30,7 +30,10 @@
                              style="visibility: visible; display: inline;"></a></div>
                     <div class="fl pl15 filmInfo">
                         <h3><a class="mdbColor" href="/subject/${subject.id}"
-                               target="_blank">${subject.pubDate}上映《${subject.title}》</a></h3>
+                               target="_blank"><c:if test="${not empty  subject.pubDate}">
+                            ${subject.pubDate}上映</br>
+                        </c:if>
+                            《${subject.title}》</a></h3>
 
                         <p class="score"><label>评分:</label><span><b
                                 class="mdbColor">${subject.totalRating/subject.ratingCount}</b></span></p>

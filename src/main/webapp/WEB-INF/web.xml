@@ -54,4 +54,22 @@
     </filter-mapping>
 
 
+    <servlet>
+        <servlet-name>SimpleCaptchaServlet</servlet-name>
+        <servlet-class>nl.captcha.servlet.SimpleCaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>captcha-width</param-name>
+            <param-value>150</param-value>
+        </init-param>
+        <init-param>
+            <param-name>captcha-height</param-name>
+            <param-value>50</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleCaptchaServlet</servlet-name>
+        <url-pattern>/captcha.png</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
