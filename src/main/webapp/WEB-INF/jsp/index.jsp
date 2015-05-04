@@ -10,25 +10,22 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/index.css"/>
 
 </head>
-<body id="page-account-index">
+<body>
+
 <h1>共${subjects.size()}部热映影片</h1>
 
-<div class="timeLayout" data-cfg-load="">
+<div class="timeLayout">
 
     <ul class="time-list">
         <c:forEach items="${subjects}" var="subject" varStatus="status">
             <li class="time-item <c:choose><c:when test="${status.count%2==0}">right</c:when><c:otherwise>left</c:otherwise></c:choose>"
-                style="margin-top: 0px;"><span class="timedot">● <em
-                    class="time-arr"></em></span>
+                    ><span class="timedot">●</span>
 
                 <div class="item-inner">
-                    <div class="picArea"><a href="${qiniu}${subject.id}" class="fl" target="_blank">
-                        <div class="loadmask"
-                             style="position: absolute; width: 154px; height: 217px; display: none;"></div>
-                        <img width="154" height="217"
-                             src="${qiniu}${subject.id}"
-                             style="visibility: visible; display: inline;"></a></div>
-                    <div class="fl pl15 filmInfo">
+                    <img width="254" height="317"
+                         src="${qiniu}${subject.id}"
+                            >
+                    <div class="filmInfo">
                         <h3><a class="mdbColor" href="/subject/${subject.id}"
                                target="_blank"><c:if test="${not empty  subject.pubDate}">
                             ${subject.pubDate}上映</br>
@@ -42,7 +39,7 @@
                             <label>导演:</label><span>${subject.directors}</span>
                         </p>
 
-                        <p class="rowlmt-1">
+                        <p>
                             <label>主演:</label><span>${subject.casts}</span>
                         </p>
 
