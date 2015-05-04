@@ -4,7 +4,6 @@ import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.dao.UserDao;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.rest.RestData;
-import me.veryyoung.movie.security.LoginRequired;
 import me.veryyoung.movie.service.UserService;
 import me.veryyoung.movie.utils.ContextUtils;
 import me.veryyoung.movie.utils.WebUtils;
@@ -37,7 +36,7 @@ public class HomeController extends BaseController {
     private UserDao userDao;
 
 
-    @RequestMapping("/")
+    @RequestMapping({"/index", "/"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/index");
         modelAndView.addObject("subjects", subjectDao.findAll());
@@ -114,10 +113,6 @@ public class HomeController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/account", method = RequestMethod.GET)
-    @LoginRequired
-    public String getAccount() {
-        return "/account";
-    }
+
 
 }
