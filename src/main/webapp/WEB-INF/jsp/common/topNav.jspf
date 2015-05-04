@@ -12,20 +12,20 @@
             <div class="nav-collapse">
                 <ul class="nav x-top-nav">
                     <li>
-                        <a href="/"><i class="icon-home icon-white"></i> 首页</a></li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i> 首页</a></li>
                     <li>
-                        <a href="/category"><i class="icon-th-list icon-white"></i> 分类</a></li>
+                        <a href="/category"><i class="fa fa-th-list fa-fw"></i> 分类</a></li>
                     <li>
-                        <a href="/box_office"><i class="icon-film icon-white"></i> 票房</a></li>
+                        <a href="/box_office"><i class="fa fa-film fa-fw"></i> 票房</a></li>
                     <li class="active">
-                        <a href="/ranking"><i class="icon-signal icon-white"></i> 排行</a></li>
+                        <a href="/ranking"><i class="fa fa-signal fa-fw"></i> 排行</a></li>
                 </ul>
                 <ul class="nav pull-right">
                     <c:choose>
                         <c:when test="${SessionUtils.user != null}">
                             <li>
                                 <a class="link-signin" href="/account">
-                                    <i class="icon-user icon-white"></i><font id="nav_nickname">
+                                    <i class="fa-user fa-fw"></i><font id="nav_nickname">
                                     欢迎${SessionUtils.user.userName}
                                 </font>
                                 </a>
@@ -58,7 +58,7 @@
                                    class="typeahead search-query" autocomplete="off"
                                    style="margin:0;border-radius:15px 0 0 15px; width:120px; color:#666;">
                             <button style="border-radius:0 15px 15px 0 ;" type="submit" class="btn btn-primary"><i
-                                    class="icon-search icon-white"></i>搜索</button>
+                                    class="fa fa-search fa-fw"></i></button>
                         </div>
                     </form>
                 </div>
