@@ -1,0 +1,32 @@
+.main-part{
+    background-color: #f4f4f4;
+}
+.part1,.part2{
+    background-color: #ffffff;
+    border: solid 1px #f4f4f4;
+    border-radius: 2px;
+}
+.part1{
+    height: 480px;
+}
+.part2{
+    height: 300px;
+}
+.space{
+    padding: 6px;
+}
+.film-name{
+    color: #9B8282;
+    font-size: x-large;
+}
+.descri{
+    padding: 10px;
+}
+.descri-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+p{
+    text-indent: 3%;
+    line-height: 1.8em;
+}
