@@ -102,7 +102,7 @@ body {
 }
 
 a {
-    color: #5e5653;
+    color: #E5DBD7;
 }
 
 a, a:hover {
@@ -343,6 +343,8 @@ a, a:hover {
 .foot a:hover {
     color: #fff;
 }
-
+.head-nav{
+    padding: 10px;
+}
 
 

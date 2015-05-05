@@ -99,5 +99,13 @@
     *width: 64px;
     *top: 120px
 }
-
+.title{
+    color: rgb(97, 109, 116);
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+}
+.margin-left-100{
+    margin-left: 100px;
+}
 

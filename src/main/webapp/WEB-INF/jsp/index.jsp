@@ -6,53 +6,56 @@
 <head>
     <title>首页 - ${appName}</title>
     <%@include file="common/head.jspf" %>
-    <%@include file="common/topNav.jspf" %>
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/index.css"/>
 
 </head>
 <body>
+<%@include file="common/topNav.jspf" %>
+<div class="container">
+    <div class="margin-top-30"></div>
+    <div class="title">共${subjects.size()}部热映影片</div>
+    <div class="margin-top-30"></div>
+    <div class="timeLayout">
 
-<h1>共${subjects.size()}部热映影片</h1>
+        <ul class="time-list">
+            <c:forEach items="${subjects}" var="subject" varStatus="status">
+                <li class="time-item <c:choose><c:when test="${status.count%2==0}">right</c:when><c:otherwise>left</c:otherwise></c:choose>"
+                        ><span class="timedot">●</span>
 
-<div class="timeLayout">
+                    <div class="item-inner margin-left-100">
+                        <img width="254" height="317"
+                             src="${qiniu}${subject.id}">
+                        <div class="margin-top-20"></div>
+                        <div class="filmInfo">
+                            <h3><a class="mdbColor" href="/subject/${subject.id}"
+                                   target="_blank"><c:if test="${not empty  subject.pubDate}">
+                                ${subject.pubDate}上映</br>
+                            </c:if>
+                                《${subject.title}》</a></h3>
 
-    <ul class="time-list">
-        <c:forEach items="${subjects}" var="subject" varStatus="status">
-            <li class="time-item <c:choose><c:when test="${status.count%2==0}">right</c:when><c:otherwise>left</c:otherwise></c:choose>"
-                    ><span class="timedot">●</span>
+                            <p class="score"><label>评分:</label><span><b
+                                    class="mdbColor">${subject.totalRating/subject.ratingCount}</b></span></p>
 
-                <div class="item-inner">
-                    <img width="254" height="317"
-                         src="${qiniu}${subject.id}"
-                            >
-                    <div class="filmInfo">
-                        <h3><a class="mdbColor" href="/subject/${subject.id}"
-                               target="_blank"><c:if test="${not empty  subject.pubDate}">
-                            ${subject.pubDate}上映</br>
-                        </c:if>
-                            《${subject.title}》</a></h3>
+                            <p class="direct">
+                                <label>导演:</label><span>${subject.directors}</span>
+                            </p>
 
-                        <p class="score"><label>评分:</label><span><b
-                                class="mdbColor">${subject.totalRating/subject.ratingCount}</b></span></p>
+                            <p>
+                                <label>主演:</label><span>${subject.casts}</span>
+                            </p>
 
-                        <p class="direct">
-                            <label>导演:</label><span>${subject.directors}</span>
-                        </p>
-
-                        <p>
-                            <label>主演:</label><span>${subject.casts}</span>
-                        </p>
-
-                        <p>
-                            <label>类型:</label><span>${subject.genres}</span>
-                        </p>
+                            <p>
+                                <label>类型:</label><span>${subject.genres}</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </c:forEach>
-    </ul>
-    <div class="midLine"></div>
+                </li>
+            </c:forEach>
+        </ul>
+        <div class="midLine"></div>
+    </div>
 </div>
+
 
 <%@include file="common/footer.jspf" %>
 </body>
