@@ -20,7 +20,7 @@
         <tbody>
         <tr>
             <td>${SessionUtils.user.userName}</td>
-            <td><sk:stringMask beforeMask="${SessionUtils.user.password}"/></td>
+            <td><mv:stringMask beforeMask="${SessionUtils.user.password}"/></td>
             <td><fmt:formatDate value="${SessionUtils.user.createTime}" pattern="yyyy年MM月dd日"/></td>
             <td><c:choose>
                 <c:when test="${SessionUtils.user.admin}">

@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>注册-${appName}</title>
-    <link href="${pageContext.request.contextPath}/assets/css/pages/register.css" rel="stylesheet"/>
     <%@include file="common/head.jspf" %>
 </head>
 <body>

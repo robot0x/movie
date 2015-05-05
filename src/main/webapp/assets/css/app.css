@@ -235,6 +235,11 @@ a, a:hover {
     margin-left: 70px;
 }
 
+.margin-left-100{
+    margin-left: 100px;
+}
+
+
 .margin-bottom-100 {
     margin-bottom: 100px;
 }
@@ -292,6 +297,15 @@ a, a:hover {
     margin-top: 10px;
     margin-bottom: 0
 }
+
+.search{
+    margin-top: 13px;
+}
+.query{
+    height: 30px;
+    border-radius: 14px;
+}
+
 
 .navbar-search .search-query {
     padding: 4px 14px;
