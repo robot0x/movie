@@ -34,7 +34,7 @@
                                 《${subject.title}》</a></h3>
 
                             <p class="score"><label>评分:</label><span><b
-                                    class="mdbColor">${subject.totalRating/subject.ratingCount}</b></span></p>
+                                    class="mdbColor"><fmt:formatNumber value="${subject.totalRating/subject.ratingCount}" pattern="#.##" minFractionDigits="2" /></b></span></p>
 
                             <p class="direct">
                                 <label>导演:</label><span>${subject.directors}</span>
