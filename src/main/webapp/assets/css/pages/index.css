@@ -108,4 +108,11 @@
 .margin-left-100{
     margin-left: 100px;
 }
+.search{
+    margin-top: 13px;
+}
+.query{
+    height: 30px;
+    border-radius: 14px;
+}
 

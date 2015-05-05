@@ -11,7 +11,7 @@
                     <div class="pull-left">
                         <div class="col-md-4"><a class="brand" href="/">${appName}</a></div>
                         <div class="col-md-6">
-                            <div class="margin-top-30"></div>
+                            <div class="margin-top-10"></div>
                             <ul class="list-unstyled">
                                 <li class="pull-left head-nav">
                                     <a href="/"><i class="fa fa-home fa-fw"></i> 首页</a></li>
@@ -24,11 +24,10 @@
                             </ul>
                         </div>
                         <div class="col-md-2">
-                            <div class="margin-top-20"></div>
-                            <form class="navbar-search" method="get" action="/search" name="search_form">
+                            <form class="search" method="get" action="/search" name="search_form">
                                 <div class="input-append">
-                                    <input id="search_input" type="text" name="key" placeholder="匆匆那年" data-provide="typeahead"
-                                           class="search-query" autocomplete="off">
+                                    <input id="search_input" type="text" name="key" placeholder="   匆匆那年" data-provide="typeahead"
+                                           class="query" autocomplete="off">
                                 </div>
                             </form>
                         </div>
@@ -36,7 +35,7 @@
                     </div>
 
                     <div class="nav pull-right">
-                        <div class="margin-top-30"></div>
+                        <div class="margin-top-10"></div>
                         <c:choose>
                                 <c:when test="${SessionUtils.user != null}">
                                     <li class="pull-left">
