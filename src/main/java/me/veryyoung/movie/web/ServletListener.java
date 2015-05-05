@@ -27,6 +27,7 @@ public class ServletListener implements ServletContextListener {
         ServletContext context = servletContextEvent.getServletContext();
         context.setAttribute("appName", "VY电影");
         context.setAttribute("qiniu", "http://7xia3v.com1.z0.glb.clouddn.com/");
+        context.setAttribute("douban", "http://movie.douban.com/subject/");
 
     }
 
