@@ -11,7 +11,9 @@
     <hr/>
     <div id="list"></div>
 
-    <div id="example"></div>
+    <div>
+        <ul id="example"></ul>
+    </div>
 </div>
 
 <%@include file="../common/footer.jspf" %>
@@ -58,7 +60,7 @@
                     var pageCount = eval("(" + data + ")").totalPages; //取到pageCount的值(把返回数据转成object类型)
                     var currentPage = eval("(" + data + ")").pageNo; //得到urrentPage
                     var options = {
-                        bootstrapMajorVersion: 2, //版本
+                        bootstrapMajorVersion: 3, //版本
                         currentPage: currentPage, //当前页数
                         totalPages: pageCount, //总页数
                         itemTexts: function (type, page, current) {
