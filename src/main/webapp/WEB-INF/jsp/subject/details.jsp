@@ -66,7 +66,7 @@
                             <tr class="x-m-rating">
                                 <td class="span2">
                                     <span class="x-m-label">评分</span></td>
-                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber value="${subject.totalRating/subject.ratingCount}" pattern="#.##" minFractionDigits="2" /></span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber value="${subject.rating}" pattern="#.##" minFractionDigits="2" /></span></td>
                             </tr>
                             </tbody>
                         </table>

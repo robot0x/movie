@@ -7,10 +7,9 @@
 </head>
 <body>
 <%@include file="../common/topNav.jspf" %>
-<div class="container">
-    <div class="margin-top-30"></div>
+<div class="container margin-top-30 margin-left-100">
     <div class="subnav subnav-fixed" id="subnav">
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills margin-left-30">
             <li>
                 <div>
                     <select class="form-control">
@@ -155,11 +154,243 @@
             </li>
         </ul>
     </div>
-    <div class="film-container">
-        <div id="film-list"></div>
-        <div>
-            <ul id="paginator"></ul>
-        </div>
+    <div class="container">
+        <ul id="film-list">
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.rating}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+            <li>
+                <div class="space">
+                    <div class="pull-left">
+                        <img src="http://dianying.fm/poster/m/520d23cf342f100ab000c6b8" width="100px"
+                             height="140px">
+                    </div>
+                    <div class="pull-left margin-left-10">
+                        <div class="film-name">天台爱情 (2013)</div>
+                        <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">
+                            <tbody>
+                            <tr class="x-m-rating">
+                                <td class="span2">
+                                    <span class="x-m-label">评分</span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.totalRating/subject.ratingCount}" pattern="#.##"
+                                        minFractionDigits="2"/></span></td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="x-m-label">类型</span>
+                                </td>
+                                <td>喜剧 / 动作 / 爱情</td>
+                            </tr>
+                            <tr>
+                                <td class="span2"><span class="x-m-label">主演</span></td>
+                                <td>周杰伦 / 王学圻 / 曾志伟</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul id="paginator"></ul>
     </div>
 </div>
 

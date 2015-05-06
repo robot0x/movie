@@ -1,9 +1,14 @@
-.dropdown {
-    background-color: #3F2929;
+#film-list {
+    width: 969px;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 10px 8px 30px 8px;
 }
 
-#subnav {
-    height: 35px;
-    width: 960px;
-    margin-bottom: 6px;
+#film-list li {
+    width: 294px;
+    height: 170px;
+    float: left;
 }
+

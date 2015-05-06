@@ -31,7 +31,7 @@ define(function (require, exports, module) {
 
         var self = this;
 
-        var filmList = $('#film-list');
+        var filmList1= $('#film-list');
 
         $.getJSON("/category/list", {pageNo: page}, function (data) {
             if (data != null) {
