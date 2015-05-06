@@ -31,36 +31,38 @@ define(function (require, exports, module) {
 
         var self = this;
 
+        var filmList = $('#film-list');
+
         $.getJSON("/category/list", {pageNo: page}, function (data) {
             if (data != null) {
                 $.each(data.resultList, function (index, item) {
-                    $("#list").html("");
-                    $("#list").append('<table id="data_table" class="table table-striped">');
-                    $("#list").append('<thead>');
-                    $("#list").append('<tr>');
-                    $("#list").append('<th>id</th>');
-                    $("#list").append('<th>名称</th>');
-                    $("#list").append('<th>导演</th>');
-                    $("#list").append('<th> </th>');
-                    $("#list").append('</tr>');
-                    $("#list").append('</thead>');
-                    $("#list").append('<tbody>');
-                    $("#list").append('<tr>');
-                    $("#list").append('<td>' + item.id + '</td>');
-                    $("#list").append('<td>' + item.title + '</td>');
-                    $("#list").append('<td>备注</td>');
-                    $("#list").append('<td>');
-                    $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.id + ' );">修改</button>');
-                    $("#list").append('<button class="btn btn-warning" onclick="Edit(' + item.id + ' );">删除</button>');
-                    $("#list").append('</td>');
-                    $("#list").append('</tr>');
-                    $("#list").append('</tbody>');
+                    filmList.html("");
+                    filmList.append('<table id="data_table" class="table table-striped">');
+                    filmList.append('<thead>');
+                    filmList.append('<tr>');
+                    filmList.append('<th>id</th>');
+                    filmList.append('<th>名称</th>');
+                    filmList.append('<th>导演</th>');
+                    filmList.append('<th> </th>');
+                    filmList.append('</tr>');
+                    filmList.append('</thead>');
+                    filmList.append('<tbody>');
+                    filmList.append('<tr>');
+                    filmList.append('<td>' + item.id + '</td>');
+                    filmList.append('<td>' + item.title + '</td>');
+                    filmList.append('<td>备注</td>');
+                    filmList.append('<td>');
+                    filmList.append('<button class="btn btn-warning" onclick="Edit(' + item.id + ' );">修改</button>');
+                    filmList.append('<button class="btn btn-warning" onclick="Edit(' + item.id + ' );">删除</button>');
+                    filmList.append('</td>');
+                    filmList.append('</tr>');
+                    filmList.append('</tbody>');
 
-                    $("#list").append('<tr>');
-                    $("#list").append('<td>内容</td>');
-                    $("#list").append('<td>' + item.title + '</td>');
-                    $("#list").append('</tr>');
-                    $("#list").append('</table>');
+                    filmList.append('<tr>');
+                    filmList.append('<td>内容</td>');
+                    filmList.append('<td>' + item.title + '</td>');
+                    filmList.append('</tr>');
+                    filmList.append('</table>');
                 });
                 if (showPaginator) {
                     var pageCount = data.totalPages;
@@ -87,7 +89,7 @@ define(function (require, exports, module) {
                             self.getData(page, false);
                         }
                     };
-                    $('#example').bootstrapPaginator(options);
+                    $('#paginator').bootstrapPaginator(options);
                 }
             }
         });
