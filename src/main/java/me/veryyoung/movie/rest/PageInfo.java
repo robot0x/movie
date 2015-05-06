@@ -29,7 +29,7 @@ public class PageInfo<T> {
 
     // 总页数
     private int totalPages;
-    
+
     // 记录集合
     private List<T> resultList;
 
@@ -50,9 +50,14 @@ public class PageInfo<T> {
     }
 
     public PageInfo(int pageNo, int pageSize) {
+        this.pageNo = pageNo;
         int endRowNum = pageNo * pageSize;
         this.startRow = endRowNum - pageSize;
         if (pageSize != 0)
             this.pageSize = pageSize;
+    }
+
+    public int getTotalPages() {
+        return totalRows / pageSize + 1;
     }
 }
