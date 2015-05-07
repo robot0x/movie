@@ -35,10 +35,12 @@ define(function (require, exports, module) {
 
         var place = $('#place  option:selected').text();
 
+        var type = $('#type  option:selected').text();
+
 
         var filmList = $('#film-list');
 
-        $.getJSON("/category/list", {pageNo: page, year: year, place: place}, function (data) {
+        $.getJSON("/category/list", {pageNo: page, year: year, place: place, type: type}, function (data) {
             if (data != null) {
                 filmList.html("");
                 $.each(data.resultList, function (index, item) {
@@ -86,7 +88,9 @@ define(function (require, exports, module) {
         $('#place').change(function () {
             self.getData(1, true);
         });
-
+        $('#type').change(function () {
+            self.getData(1, true);
+        });
     };
 
 

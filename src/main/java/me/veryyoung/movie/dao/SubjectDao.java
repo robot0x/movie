@@ -25,7 +25,7 @@ public class SubjectDao extends BaseDao<Subject> {
         super(Subject.class);
     }
 
-    public List<Subject> listBySearch(int start, int end, String year, String place) {
+    public List<Subject> listBySearch(int start, int end, String year, String place, String type) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class);
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
@@ -33,18 +33,24 @@ public class SubjectDao extends BaseDao<Subject> {
         if (!place.contains("不限")) {
             criteria.add(Restrictions.like("countries", "%".concat(place).concat("%")));
         }
+        if (!type.contains("不限")) {
+            criteria.add(Restrictions.like("genres", "%".concat(type).concat("%")));
+        }
         criteria.setFirstResult(start);
         criteria.setMaxResults(end);
         return criteria.list();
     }
 
-    public int countBySearch(String year, String place) {
+    public int countBySearch(String year, String place, String type) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class).setProjection(Projections.rowCount());
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
         }
         if (!place.contains("不限")) {
             criteria.add(Restrictions.like("countries", "%".concat(place).concat("%")));
+        }
+        if (!type.contains("不限")) {
+            criteria.add(Restrictions.like("genres", "%".concat(type).concat("%")));
         }
         Long count = (Long) (criteria.uniqueResult());
         return count.intValue();

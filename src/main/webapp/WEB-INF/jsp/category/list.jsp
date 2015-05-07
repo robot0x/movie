@@ -102,7 +102,7 @@
             </li>
             <li>
                 <div>
-                    <select class="form-control">
+                    <select class="form-control" id="type">
                         <option>类型不限</option>
                         <option>喜剧</option>
                         <option>爱情</option>
@@ -151,7 +151,7 @@
         <ul id="film-list">
         </ul>
     </div>
-    <div class="margin-left-30">
+    <div class="margin-left-30 margin-top-30">
         <ul id="paginator"></ul>
     </div>
 </div>
