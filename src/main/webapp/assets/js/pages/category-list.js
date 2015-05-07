@@ -37,18 +37,11 @@ define(function (require, exports, module) {
             if (data != null) {
                 filmList.html("");
                 $.each(data.resultList, function (index, item) {
-                    filmList.append('<li><div class="space"><div class="pull-left">\
-                    <img src="'  +item.image + '" width="100px" height="140px"></div>\
-                    <div class="pull-left margin-left-10">\
-                    <div class="film-name">天台爱情 (2013)</div>\
-                    <table class="table table-condensed table-striped table-bordered" style="font-size:12px;">\
-                    <tbody>\
-                    <tr class="x-m-rating">\
-                    <td class="span2">\
-                    <span class="x-m-label">评分</span></td>\
-                    <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber value="${subject.rating}" pattern="#.##" minFractionDigits="2"/></span></td>\
-                    </tr><tr><td class="span2"><span class="x-m-label">类型</span></td><td>喜剧 / 动作 / 爱情</td></tr>\
-                    <tr><td class="span2"><span class="x-m-label">主演</span></td><td>周杰伦 / 王学圻 / 曾志伟</td></tr>\
+                    filmList.append('<li><div class="space"><div class="pull-left"><img src="' + item.image + '" width="100px" height="140px"></div>\
+                    <div class="pull-left margin-left-10 film-desc"><div>' + item.title + "(" + item.year + ")" + '</div>\
+                    <table class="table" style="font-size:12px;"><tbody><tr>\
+                    <td width="50px">评分</td><td><span class="badge" style="color: orange; font-weight: bold;">' + item.rating.toFixed(2) + '</span></td>\
+                    </tr><tr><td>类型</td><td>' + item.genres + '</td></tr><tr><td>主演</td><td>' + item.casts + '</td></tr>\
                     </tbody></table></div><div class="clearfix"></div></div></li>');
                 });
                 if (showPaginator) {

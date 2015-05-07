@@ -7,9 +7,9 @@
 </head>
 <body>
 <%@include file="../common/topNav.jspf" %>
-<div class="container margin-top-30 margin-left-100">
-    <div class="subnav subnav-fixed" id="subnav">
-        <ul class="nav nav-pills margin-left-30">
+<div class="container">
+    <div class="subnav subnav-fixed">
+        <ul class="nav nav-pills margin-left-30 margin-top-30">
             <li>
                 <div>
                     <select class="form-control">
@@ -158,7 +158,7 @@
         <ul id="film-list">
         </ul>
     </div>
-    <div>
+    <div  class="margin-left-30">
         <ul id="paginator"></ul>
     </div>
 </div>
