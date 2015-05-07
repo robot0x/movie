@@ -39,6 +39,8 @@ define(function (require, exports, module) {
 
         var sort = $('#sort  option:selected').val();
 
+        var key = $('#key').val();
+
 
         var filmList = $('#film-list');
 
@@ -47,7 +49,8 @@ define(function (require, exports, module) {
             year: year,
             place: place,
             type: type,
-            sort: sort
+            sort: sort,
+            key: key
         }, function (data) {
             if (data != null) {
                 filmList.html("");

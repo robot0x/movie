@@ -22,12 +22,8 @@
                         </ul>
                     </div>
                     <div class="col-md-2">
-                        <form class="search" method="get" action="/search" name="search_form">
-                            <div class="input-append">
-                                <input id="search_input" type="text" name="key" placeholder="   匆匆那年"
-                                       data-provide="typeahead"
-                                       class="query" autocomplete="off">
-                            </div>
+                        <form class="navbar-search pull-left" action="/category">
+                            <input type="text" class="search-query" name="key" placeholder="饥饿游戏">
                         </form>
                     </div>
                     <div class="clearfix"></div>

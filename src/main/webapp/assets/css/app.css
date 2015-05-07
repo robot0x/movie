@@ -210,6 +210,9 @@ a, a:hover {
 .margin-top-40 {
     margin-top: 40px;
 }
+.margin-top-50 {
+    margin-top: 50px;
+}
 
 .margin-top-100 {
     margin-top: 200px;
@@ -235,14 +238,16 @@ a, a:hover {
     margin-left: 70px;
 }
 
-.margin-left-100{
+.margin-left-100 {
     margin-left: 100px;
 }
 
 .margin-bottom-10 {
     margin-bottom: 10px;
 }
-
+.margin-bottom-30 {
+    margin-bottom: 10px;
+}
 
 .margin-bottom-100 {
     margin-bottom: 100px;
@@ -298,18 +303,14 @@ a, a:hover {
 .navbar-search {
     position: relative;
     float: left;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 0
 }
 
-.search{
-    margin-top: 13px;
-}
-.query{
+.query {
     height: 30px;
     border-radius: 14px;
 }
-
 
 .navbar-search .search-query {
     padding: 4px 14px;
@@ -322,7 +323,8 @@ a, a:hover {
     -moz-border-radius: 15px;
     border-radius: 15px
 }
-#search{
+
+#search {
 
 }
 
@@ -361,7 +363,8 @@ a, a:hover {
 .foot a:hover {
     color: #fff;
 }
-.head-nav{
+
+.head-nav {
     padding: 10px;
 }
 

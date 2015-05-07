@@ -58,6 +58,8 @@ public class PageInfo<T> {
     }
 
     public int getTotalPages() {
-        return (int) Math.ceil(totalRows / pageSize);
+        return (int) Math.ceil((float) totalRows / pageSize);
     }
+
+
 }

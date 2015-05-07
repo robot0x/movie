@@ -3,6 +3,7 @@ package me.veryyoung.movie.dao;
 import me.veryyoung.movie.entity.Playing;
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.utils.OrderBySqlFormulaUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -27,7 +28,7 @@ public class SubjectDao extends BaseDao<Subject> {
         super(Subject.class);
     }
 
-    public List<Subject> listBySearch(int start, int end, String year, String place, String type, String sort) {
+    public List<Subject> listBySearch(int start, int end, String year, String place, String type, String sort, String key) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class);
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
@@ -43,12 +44,18 @@ public class SubjectDao extends BaseDao<Subject> {
         } else if (sort.equals("date")) {
             criteria.addOrder(Order.desc("pubDate"));
         }
+        if (StringUtils.isNotEmpty(key)) {
+            criteria.add(Restrictions.disjunction()
+                            .add(Restrictions.like("title", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("originalTitle", "%".concat(key).concat("%")))
+            );
+        }
         criteria.setFirstResult(start);
         criteria.setMaxResults(end);
         return criteria.list();
     }
 
-    public int countBySearch(String year, String place, String type, String sort) {
+    public int countBySearch(String year, String place, String type, String sort, String key) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class).setProjection(Projections.rowCount());
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
@@ -63,6 +70,12 @@ public class SubjectDao extends BaseDao<Subject> {
             criteria.addOrder(OrderBySqlFormulaUtils.sqlFormula("totalRating / ratingCount desc"));
         } else if (sort.equals("date")) {
             criteria.addOrder(Order.desc("pubDate"));
+        }
+        if (StringUtils.isNotEmpty(key)) {
+            criteria.add(Restrictions.disjunction()
+                    .add(Restrictions.like("title", "%".concat(key).concat("%")))
+                    .add(Restrictions.like("originalTitle", "%".concat(key).concat("%")))
+            );
         }
         Long count = (Long) (criteria.uniqueResult());
         return count.intValue();

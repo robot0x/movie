@@ -3,10 +3,12 @@ package me.veryyoung.movie.controller;
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.rest.PageInfo;
 import me.veryyoung.movie.service.SubjectService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by veryyoung on 2015/5/5.
@@ -19,14 +21,18 @@ public class CategoryController extends BaseController {
     private SubjectService subjectService;
 
     @RequestMapping({"/index", ""})
-    public String index() {
-        return "/category/list";
+    public ModelAndView index(String key) {
+        ModelAndView modelAndView = new ModelAndView("/category/list");
+        if (StringUtils.isNotEmpty(key)) {
+            modelAndView.addObject("key", key);
+        }
+        return modelAndView;
     }
 
     @RequestMapping("/list")
     @ResponseBody
-    public PageInfo<Subject> list(int pageNo, String year, String place, String type, String sort) {
-        return subjectService.listBySearch(pageNo, 6, year, place, type, sort);
+    public PageInfo<Subject> list(int pageNo, String year, String place, String type, String sort, String key) {
+        return subjectService.listBySearch(pageNo, 6, year, place, type, sort, key);
     }
 
 }

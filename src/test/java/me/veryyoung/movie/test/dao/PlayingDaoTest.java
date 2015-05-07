@@ -17,11 +17,16 @@ public class PlayingDaoTest extends AbstractSpringTest {
 
     @Test
     public void test() {
-        String[] idList ={"111","222","333","444"};
-        for(String id:idList){
+        String[] idList = {"111", "222", "333", "444"};
+        for (String id : idList) {
             Playing playing = new Playing(id);
             playingDao.create(playing);
         }
+    }
 
+    @Test
+    public void testCeil() {
+        System.out.println(1 / 6);
+        System.out.println(Math.ceil(((float)1 / 6)));
     }
 }

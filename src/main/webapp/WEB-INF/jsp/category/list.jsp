@@ -146,12 +146,20 @@
                     </select>
                 </div>
             </li>
+            <c:if test="${not empty key}">
+                <li>
+                    <div>
+                        <input class="form-control" id="key" value="${key}" READONLY>
+                    </div>
+                </li>
+            </c:if>
         </ul>
     </div>
     <div class="container">
         <ul id="film-list">
         </ul>
     </div>
+    <div class="margin-top-50"></div>
     <div class="margin-left-30 margin-top-30">
         <ul id="paginator"></ul>
     </div>
