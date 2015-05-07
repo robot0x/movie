@@ -33,10 +33,12 @@ define(function (require, exports, module) {
 
         var year = $('#year  option:selected').text();
 
+        var place = $('#place  option:selected').text();
+
 
         var filmList = $('#film-list');
 
-        $.getJSON("/category/list", {pageNo: page, year: year}, function (data) {
+        $.getJSON("/category/list", {pageNo: page, year: year, place: place}, function (data) {
             if (data != null) {
                 filmList.html("");
                 $.each(data.resultList, function (index, item) {
@@ -79,6 +81,9 @@ define(function (require, exports, module) {
 
 
         $('#year').change(function () {
+            self.getData(1, true);
+        });
+        $('#place').change(function () {
             self.getData(1, true);
         });
 

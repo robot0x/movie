@@ -25,20 +25,26 @@ public class SubjectDao extends BaseDao<Subject> {
         super(Subject.class);
     }
 
-    public List<Subject> listBySearch(int start, int end, String year) {
+    public List<Subject> listBySearch(int start, int end, String year, String place) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class);
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
+        }
+        if (!place.contains("不限")) {
+            criteria.add(Restrictions.like("countries", "%".concat(place).concat("%")));
         }
         criteria.setFirstResult(start);
         criteria.setMaxResults(end);
         return criteria.list();
     }
 
-    public int countBySearch(String year) {
+    public int countBySearch(String year, String place) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class).setProjection(Projections.rowCount());
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
+        }
+        if (!place.contains("不限")) {
+            criteria.add(Restrictions.like("countries", "%".concat(place).concat("%")));
         }
         Long count = (Long) (criteria.uniqueResult());
         return count.intValue();

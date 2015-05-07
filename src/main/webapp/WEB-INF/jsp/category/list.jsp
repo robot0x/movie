@@ -46,7 +46,7 @@
             </li>
             <li>
                 <div>
-                    <select class="form-control">
+                    <select class="form-control" id="place">
                         <option>地区不限</option>
                         <option>大陆</option>
                         <option>香港</option>

@@ -18,10 +18,10 @@ public class SubjectServiceImpl extends BaseService implements SubjectService {
     private SubjectDao subjectDao;
 
     @Override
-    public PageInfo<Subject> listBySearch(int pageNo, int pageSize, String year) {
+    public PageInfo<Subject> listBySearch(int pageNo, int pageSize, String year,String place) {
         PageInfo<Subject> pageInfo = new PageInfo<>(pageNo, pageSize);
-        pageInfo.setResultList(subjectDao.listBySearch(pageInfo.getStartRow(), pageSize, year));
-        pageInfo.setTotalRows(subjectDao.countBySearch(year));
+        pageInfo.setResultList(subjectDao.listBySearch(pageInfo.getStartRow(), pageSize, year,place));
+        pageInfo.setTotalRows(subjectDao.countBySearch(year,place));
         return pageInfo;
     }
 
