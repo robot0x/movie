@@ -1,6 +1,7 @@
 package me.veryyoung.movie.entity;
 
 import lombok.Data;
+import me.veryyoung.movie.qiniu.QiniuUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,6 +69,10 @@ public class Subject {
 
     public double getRating() {
         return totalRating / ratingCount;
+    }
+
+    public String getImage() {
+        return QiniuUtils.QINIU_URL + id;
     }
 
 

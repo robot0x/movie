@@ -18,6 +18,8 @@ public class QiniuUtils {
 
     private static final String BUCKET_NAME = "movie";
 
+    public static final String QINIU_URL = "http://7xia3v.com1.z0.glb.clouddn.com/";
+
     /**
      * 上传对应主题的图片到七牛云
      */

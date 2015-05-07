@@ -24,7 +24,7 @@
 
                     <div class="item-inner margin-left-100">
                         <img width="254" height="317"
-                             src="${qiniu}${subject.id}">
+                             src="${subject.image}">
                         <div class="margin-top-20"></div>
                         <div class="filmInfo">
                             <h3><a class="mdbColor" href="/subject/${subject.id}"
