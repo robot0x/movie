@@ -31,9 +31,12 @@ define(function (require, exports, module) {
 
         var self = this;
 
+        var year = $('#year  option:selected').text();
+
+
         var filmList = $('#film-list');
 
-        $.getJSON("/category/list", {pageNo: page}, function (data) {
+        $.getJSON("/category/list", {pageNo: page, year: year}, function (data) {
             if (data != null) {
                 filmList.html("");
                 $.each(data.resultList, function (index, item) {
@@ -73,6 +76,12 @@ define(function (require, exports, module) {
                 }
             }
         });
+
+
+        $('#year').change(function () {
+            self.getData(1, true);
+        });
+
     };
 
 

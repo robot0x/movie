@@ -2,7 +2,9 @@ package me.veryyoung.movie.dao;
 
 import me.veryyoung.movie.entity.Playing;
 import me.veryyoung.movie.entity.Subject;
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,16 +25,23 @@ public class SubjectDao extends BaseDao<Subject> {
         super(Subject.class);
     }
 
-    public List<Subject> listBySearch(int start, int end) {
-        Query query = getCurrentSession().createQuery("from Subject as subject");
-        query.setFirstResult(start);
-        query.setMaxResults(end);
-        return query.list();
+    public List<Subject> listBySearch(int start, int end, String year) {
+        Criteria criteria = getCurrentSession().createCriteria(Subject.class);
+        if (!year.contains("不限")) {
+            criteria.add(Restrictions.eq("year", new Short(year)));
+        }
+        criteria.setFirstResult(start);
+        criteria.setMaxResults(end);
+        return criteria.list();
     }
 
-    public int countBySearch() {
-        int count = ((Long) getCurrentSession().createQuery("select count(*) from Subject").uniqueResult()).intValue();
-        return count;
+    public int countBySearch(String year) {
+        Criteria criteria = getCurrentSession().createCriteria(Subject.class).setProjection(Projections.rowCount());
+        if (!year.contains("不限")) {
+            criteria.add(Restrictions.eq("year", new Short(year)));
+        }
+        Long count = (Long) (criteria.uniqueResult());
+        return count.intValue();
     }
 
     public List<Subject> getPlaying() {

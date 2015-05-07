@@ -12,7 +12,7 @@
         <ul class="nav nav-pills margin-left-30 margin-top-30">
             <li>
                 <div>
-                    <select class="form-control">
+                    <select class="form-control" id="year">
                         <option>年份不限</option>
                         <option>2015</option>
                         <option>2014</option>
@@ -40,13 +40,6 @@
                         <option>1992</option>
                         <option>1991</option>
                         <option>1990</option>
-                        <option>80年代</option>
-                        <option>70年代</option>
-                        <option>60年代</option>
-                        <option>50年代</option>
-                        <option>40年代</option>
-                        <option>30年代</option>
-                        <option>20年代</option>
                     </select>
                 </div>
 
@@ -158,7 +151,7 @@
         <ul id="film-list">
         </ul>
     </div>
-    <div  class="margin-left-30">
+    <div class="margin-left-30">
         <ul id="paginator"></ul>
     </div>
 </div>
