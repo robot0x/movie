@@ -1,5 +1,6 @@
 package me.veryyoung.movie.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by veryyoung on 2015/3/4.
  */
+
 public abstract class BaseDao<T> {
 
     protected Logger logger = LoggerFactory.getLogger(getClass().getName());
@@ -56,6 +58,11 @@ public abstract class BaseDao<T> {
 
     public void flush() {
         getCurrentSession().flush();
+    }
+
+    public void deleteAll() {
+        Query query = getCurrentSession().createQuery("delete from " + entityClass.getSimpleName());
+        query.executeUpdate();
     }
 
 }

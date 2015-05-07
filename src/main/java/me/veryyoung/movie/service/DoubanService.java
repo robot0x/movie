@@ -12,6 +12,6 @@ public interface DoubanService {
     //存在直接返回，不存在从豆瓣抓取后返回
     public Subject find(String id);
 
-    public List<Subject> getPlaying();
+    public List<Subject> findPlaying();
 
 }

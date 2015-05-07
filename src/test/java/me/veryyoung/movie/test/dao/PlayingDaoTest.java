@@ -17,7 +17,11 @@ public class PlayingDaoTest extends AbstractSpringTest {
 
     @Test
     public void test() {
-        Playing playing = new Playing("25745752");
-        playingDao.create(playing);
+        String[] idList ={"111","222","333","444"};
+        for(String id:idList){
+            Playing playing = new Playing(id);
+            playingDao.create(playing);
+        }
+
     }
 }

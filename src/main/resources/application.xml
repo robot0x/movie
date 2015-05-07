@@ -51,6 +51,8 @@
                 <prop key="hibernate.current_session_context_class">
                     org.springframework.orm.hibernate4.SpringSessionContext
                 </prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <prop key="hiberante.cache.use_second_level_cache">false</prop>
             </props>
         </property>
 
@@ -76,12 +78,12 @@
 
     <aop:config>
         <aop:pointcut expression="execution(* me.veryyoung.movie.service.*.*(..))" id="txPointcutService"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcutService" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcutService"/>
     </aop:config>
 
     <aop:config>
         <aop:pointcut expression="execution(* me.veryyoung.movie.dao.*.*(..))" id="txPointcutDao"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcutDao" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcutDao"/>
     </aop:config>
 
 

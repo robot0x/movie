@@ -32,7 +32,6 @@ public class HomeController extends BaseController {
     @Autowired
     private DoubanService doubanService;
 
-
     @Autowired
     private UserDao userDao;
 
@@ -40,7 +39,7 @@ public class HomeController extends BaseController {
     @RequestMapping({"/index", "/"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/index");
-        modelAndView.addObject("subjects", doubanService.getPlaying());
+        modelAndView.addObject("subjects", doubanService.findPlaying());
         return modelAndView;
     }
 

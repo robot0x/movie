@@ -17,7 +17,6 @@ public class UserDao extends BaseDao<User> {
         super(User.class);
     }
 
-
     public boolean checkUserName(String userName) {
         Query query = getCurrentSession().createQuery("select count(*) from User as user where user.userName = :userName");
         query.setString("userName", userName);

@@ -136,9 +136,9 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
     }
 
     @Override
-    public List<Subject> getPlaying() {
-        List<Subject> playingList = subjectDao.getPlaying();
-        if (playingList.isEmpty()) {
+    public List<Subject> findPlaying() {
+        List<Subject> result = subjectDao.getPlaying();
+        if (result.isEmpty()) {
             HttpClient httpClient = HttpClientBuilder.create().build();
             String url = "http://api.douban.com/v2/movie/nowplaying?apikey=0df993c66c0c636e29ecbb5344252a4a";
             HttpGet httpGet = new HttpGet(url);
@@ -147,25 +147,28 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             JSONObject jsonObject;
             Subject subject;
             JSONArray jsonArray;
-            playingList = new ArrayList<>();
-            Playing playing;
+            result = new ArrayList<>();
             int length;
+            String id;
+            List<Playing> playingList;
             try {
                 String responseBody = httpClient.execute(httpGet, responseHandler);
                 jsonObject = new JSONObject(responseBody);
                 jsonArray = jsonObject.getJSONArray("entries");
                 length = jsonArray.length();
-                for (int i = 1; i < length; i++) {
-                    subject = find(jsonArray.getJSONObject(i).getString("id"));
-                    playing = new Playing();
-                    playing.setId(subject.getId());
-                    playingDao.create(playing);
-                    playingList.add(subject);
+                playingList = new ArrayList<>(length);
+                for (int i = 0; i < length; i++) {
+                    id = jsonArray.getJSONObject(i).getString("id");
+                    subject = find(id);
+                    result.add(subject);
+                    playingList.add(new Playing(id));
                 }
+                playingDao.renew(playingList);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
-        return playingList;
+        return result;
     }
 }
