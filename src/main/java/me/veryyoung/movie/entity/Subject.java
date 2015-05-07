@@ -67,6 +67,7 @@ public class Subject {
     @Column(length = 1000)
     private String summary;
 
+
     public double getRating() {
         return totalRating / ratingCount;
     }

@@ -2,6 +2,8 @@ package me.veryyoung.movie.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,8 @@ import java.util.List;
  * Created by veryyoung on 2015/3/4.
  */
 public abstract class BaseDao<T> {
+
+    protected Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     @Autowired
     private SessionFactory sessionFactory;

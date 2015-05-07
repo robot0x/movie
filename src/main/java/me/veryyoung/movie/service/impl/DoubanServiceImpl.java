@@ -1,6 +1,8 @@
 package me.veryyoung.movie.service.impl;
 
+import me.veryyoung.movie.dao.PlayingDao;
 import me.veryyoung.movie.dao.SubjectDao;
+import me.veryyoung.movie.entity.Playing;
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.qiniu.QiniuUtils;
 import me.veryyoung.movie.service.BaseService;
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by veryyoung on 2015/3/18.
@@ -25,6 +29,9 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
 
     @Autowired
     private SubjectDao subjectDao;
+
+    @Autowired
+    private PlayingDao playingDao;
 
     @Override
     public Subject find(String id) {
@@ -64,18 +71,22 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             jsonArray = jsonObject.getJSONArray("casts");
             sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
             length = jsonArray.length();
+
             for (int i = 1; i < length; i++) {
                 sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
             }
             subject.setCasts(sb.toString());
 
+
             jsonArray = jsonObject.getJSONArray("writers");
             length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+                }
+                subject.setWriters(sb.toString());
             }
-            subject.setWriters(sb.toString());
 
             subject.setPubDate(jsonObject.getString("mainland_pubdate"));
             subject.setYear((short) jsonObject.getInt("year"));
@@ -122,5 +133,39 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             e.printStackTrace();
         }
         return subject;
+    }
+
+    @Override
+    public List<Subject> getPlaying() {
+        List<Subject> playingList = subjectDao.getPlaying();
+        if (playingList.isEmpty()) {
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            String url = "http://api.douban.com/v2/movie/nowplaying?apikey=0df993c66c0c636e29ecbb5344252a4a";
+            HttpGet httpGet = new HttpGet(url);
+            //创建响应处理器处理服务器响应内容
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            JSONObject jsonObject;
+            Subject subject;
+            JSONArray jsonArray;
+            playingList = new ArrayList<>();
+            Playing playing;
+            int length;
+            try {
+                String responseBody = httpClient.execute(httpGet, responseHandler);
+                jsonObject = new JSONObject(responseBody);
+                jsonArray = jsonObject.getJSONArray("entries");
+                length = jsonArray.length();
+                for (int i = 1; i < length; i++) {
+                    subject = find(jsonArray.getJSONObject(i).getString("id"));
+                    playing = new Playing();
+                    playing.setId(subject.getId());
+                    playingDao.create(playing);
+                    playingList.add(subject);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return playingList;
     }
 }

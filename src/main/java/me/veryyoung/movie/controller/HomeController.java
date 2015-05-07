@@ -1,9 +1,9 @@
 package me.veryyoung.movie.controller;
 
-import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.dao.UserDao;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.rest.RestData;
+import me.veryyoung.movie.service.DoubanService;
 import me.veryyoung.movie.service.UserService;
 import me.veryyoung.movie.utils.ContextUtils;
 import me.veryyoung.movie.utils.WebUtils;
@@ -30,7 +30,8 @@ public class HomeController extends BaseController {
     private UserService userService;
 
     @Autowired
-    private SubjectDao subjectDao;
+    private DoubanService doubanService;
+
 
     @Autowired
     private UserDao userDao;
@@ -39,7 +40,7 @@ public class HomeController extends BaseController {
     @RequestMapping({"/index", "/"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/index");
-        modelAndView.addObject("subjects", subjectDao.findAll());
+        modelAndView.addObject("subjects", doubanService.getPlaying());
         return modelAndView;
     }
 
