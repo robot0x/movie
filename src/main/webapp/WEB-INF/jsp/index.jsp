@@ -26,7 +26,7 @@
                         <img width="254" height="317"
                              src="${subject.image}">
 
-                        <div class="margin-top-20"></div>
+                        <div class="margin-top-10"></div>
                         <div class="filmInfo">
                             <h3><a class="mdbColor" href="/subject/${subject.id}"
                                    target="_blank"><c:if test="${not empty  subject.pubDate}">
@@ -34,9 +34,10 @@
                             </c:if>
                                 《${subject.title}》</a></h3>
 
-                            <p class="score"><label>评分:</label><span><b
-                                    class="mdbColor"><fmt:formatNumber value="${subject.rating}" pattern="#.##"
-                                                                       minFractionDigits="2"/></b></span></p>
+                            <p class="score"><label>评分:
+                                <span class="badge" style="width:40px;color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.rating}" pattern="#.##"
+                                        minFractionDigits="2"/></span></p>
 
                             <p class="direct">
                                 <label>导演:</label><span>${subject.directors}</span>
@@ -56,9 +57,8 @@
         </ul>
         <div class="midLine"></div>
     </div>
-    <div class="margin-top-30"></div>
-</div>
 
+</div>
 
 <%@include file="common/footer.jspf" %>
 </body>
