@@ -17,8 +17,6 @@
                                 <a href="/"><i class="fa fa-home fa-fw"></i> 首页</a></li>
                             <li class="pull-left head-nav">
                                 <a href="/category"><i class="fa fa-th-list fa-fw"></i> 分类</a></li>
-                            <li class="active pull-left head-nav">
-                                <a href="/ranking"><i class="fa fa-signal fa-fw"></i>排行</a></li>
                         </ul>
                     </div>
                     <div class="col-md-2">
