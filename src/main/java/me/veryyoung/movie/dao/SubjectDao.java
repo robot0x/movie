@@ -2,7 +2,9 @@ package me.veryyoung.movie.dao;
 
 import me.veryyoung.movie.entity.Playing;
 import me.veryyoung.movie.entity.Subject;
+import me.veryyoung.movie.utils.OrderBySqlFormulaUtils;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class SubjectDao extends BaseDao<Subject> {
         super(Subject.class);
     }
 
-    public List<Subject> listBySearch(int start, int end, String year, String place, String type) {
+    public List<Subject> listBySearch(int start, int end, String year, String place, String type, String sort) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class);
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
@@ -36,12 +38,17 @@ public class SubjectDao extends BaseDao<Subject> {
         if (!type.contains("不限")) {
             criteria.add(Restrictions.like("genres", "%".concat(type).concat("%")));
         }
+        if (sort.equals("rating")) {
+            criteria.addOrder(OrderBySqlFormulaUtils.sqlFormula("totalRating / ratingCount desc"));
+        } else if (sort.equals("date")) {
+            criteria.addOrder(Order.desc("pubDate"));
+        }
         criteria.setFirstResult(start);
         criteria.setMaxResults(end);
         return criteria.list();
     }
 
-    public int countBySearch(String year, String place, String type) {
+    public int countBySearch(String year, String place, String type, String sort) {
         Criteria criteria = getCurrentSession().createCriteria(Subject.class).setProjection(Projections.rowCount());
         if (!year.contains("不限")) {
             criteria.add(Restrictions.eq("year", new Short(year)));
@@ -51,6 +58,11 @@ public class SubjectDao extends BaseDao<Subject> {
         }
         if (!type.contains("不限")) {
             criteria.add(Restrictions.like("genres", "%".concat(type).concat("%")));
+        }
+        if (sort.equals("rating")) {
+            criteria.addOrder(OrderBySqlFormulaUtils.sqlFormula("totalRating / ratingCount desc"));
+        } else if (sort.equals("date")) {
+            criteria.addOrder(Order.desc("pubDate"));
         }
         Long count = (Long) (criteria.uniqueResult());
         return count.intValue();

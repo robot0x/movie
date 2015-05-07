@@ -135,13 +135,14 @@
                         <option>灾难</option>
                         <option>荒诞</option>
                     </select>
+                </div>
             </li>
             <li>
                 <div>
-                    <select class="form-control">
-                        <option>按热门排序</option>
-                        <option>按评分排序</option>
-                        <option>按上映日期排序</option>
+                    <select class="form-control" id="sort">
+                        <option value="hot">按热门排序</option>
+                        <option value="rating">按评分排序</option>
+                        <option value="date">按上映日期排序</option>
                     </select>
                 </div>
             </li>

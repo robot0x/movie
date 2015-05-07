@@ -25,8 +25,8 @@ public class CategoryController extends BaseController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public PageInfo<Subject> list(int pageNo, String year, String place, String type) {
-        return subjectService.listBySearch(pageNo, 6, year, place, type);
+    public PageInfo<Subject> list(int pageNo, String year, String place, String type, String sort) {
+        return subjectService.listBySearch(pageNo, 6, year, place, type, sort);
     }
 
 }

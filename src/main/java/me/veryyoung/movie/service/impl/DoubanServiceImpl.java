@@ -7,6 +7,7 @@ import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.qiniu.QiniuUtils;
 import me.veryyoung.movie.service.BaseService;
 import me.veryyoung.movie.service.DoubanService;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import java.util.List;
  */
 @Service
 public class DoubanServiceImpl extends BaseService implements DoubanService {
+
 
     @Autowired
     private SubjectDao subjectDao;
@@ -88,7 +91,7 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
                 subject.setWriters(sb.toString());
             }
 
-            subject.setPubDate(jsonObject.getString("mainland_pubdate"));
+            subject.setPubDate(DateUtils.parseDate(jsonObject.getString("mainland_pubdate"), "yyyy-mm-dd"));
             subject.setYear((short) jsonObject.getInt("year"));
 
             jsonArray = jsonObject.getJSONArray("languages");
@@ -130,6 +133,8 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             logger.debug("add subject [{}] from douban", subject);
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return subject;

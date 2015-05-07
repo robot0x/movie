@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * 电影条目
@@ -44,9 +45,8 @@ public class Subject {
     //编剧
     private String writers;
 
-
     //上映日期
-    private String pubDate;
+    private Date pubDate;
 
     //上映年份
     private short year;

@@ -8,6 +8,6 @@ import me.veryyoung.movie.rest.PageInfo;
  */
 public interface SubjectService {
 
-    public PageInfo<Subject> listBySearch(int pageNo, int pageSize, String year, String place, String type);
+    public PageInfo<Subject> listBySearch(int pageNo, int pageSize, String year, String place, String type, String sort);
 
 }

@@ -30,12 +30,13 @@
                         <div class="filmInfo">
                             <h3><a class="mdbColor" href="/subject/${subject.id}"
                                    target="_blank"><c:if test="${not empty  subject.pubDate}">
-                                ${subject.pubDate}上映</br>
+                                <fmt:formatDate value="${subject.pubDate}" pattern="yyyy年MM月dd日"/> 上映</br>
                             </c:if>
                                 《${subject.title}》</a></h3>
 
                             <p class="score"><label>评分:
-                                <span class="badge" style="width:40px;color: orange; font-weight: bold;"><fmt:formatNumber
+                                <span class="badge"
+                                      style="width:40px;color: orange; font-weight: bold;"><fmt:formatNumber
                                         value="${subject.rating}" pattern="#.##"
                                         minFractionDigits="2"/></span></p>
 

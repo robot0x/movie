@@ -53,7 +53,7 @@
                             </tr>
                             <tr>
                                 <td class="span2"><span class="x-m-label">上映时间</span></td>
-                                <td>${subject.pubDate}</td>
+                                <td><fmt:formatDate value="${subject.pubDate}" pattern="yyyy年MM月dd日"/></td>
                             </tr>
                             <tr>
                                 <td class="span2"><span class="x-m-label">片长</span></td>
@@ -66,7 +66,8 @@
                             <tr class="x-m-rating">
                                 <td class="span2">
                                     <span class="x-m-label">评分</span></td>
-                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber value="${subject.rating}" pattern="#.##" minFractionDigits="2" /></span></td>
+                                <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
+                                        value="${subject.rating}" pattern="#.##" minFractionDigits="2"/></span></td>
                             </tr>
                             </tbody>
                         </table>
