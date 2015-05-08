@@ -2,6 +2,7 @@ package me.veryyoung.movie.controller;
 
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.rest.PageInfo;
+import me.veryyoung.movie.service.DoubanService;
 import me.veryyoung.movie.service.SubjectService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,16 @@ public class CategoryController extends BaseController {
     @Autowired
     private SubjectService subjectService;
 
+    @Autowired
+    private DoubanService doubanService;
+
     @RequestMapping({"/index", ""})
     public ModelAndView index(String key) {
         ModelAndView modelAndView = new ModelAndView("/category/list");
         if (StringUtils.isNotEmpty(key)) {
             modelAndView.addObject("key", key);
         }
+        doubanService.saveBysearch(key);
         return modelAndView;
     }
 

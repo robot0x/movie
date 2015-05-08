@@ -7,6 +7,7 @@ import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.qiniu.QiniuUtils;
 import me.veryyoung.movie.service.BaseService;
 import me.veryyoung.movie.service.DoubanService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -65,20 +66,24 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
 
             JSONArray jsonArray = jsonObject.getJSONArray("directors");
             int length = jsonArray.length();
-            StringBuilder sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+            StringBuilder sb;
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+                }
+                subject.setDirectors(sb.toString());
             }
-            subject.setDirectors(sb.toString());
 
             jsonArray = jsonObject.getJSONArray("casts");
-            sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
             length = jsonArray.length();
-
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.getJSONObject(0).getString("name"));
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.getJSONObject(i).getString("name"));
+                }
+                subject.setCasts(sb.toString());
             }
-            subject.setCasts(sb.toString());
 
 
             jsonArray = jsonObject.getJSONArray("writers");
@@ -91,40 +96,54 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
                 subject.setWriters(sb.toString());
             }
 
-            subject.setPubDate(DateUtils.parseDate(jsonObject.getString("mainland_pubdate"), "yyyy-mm-dd"));
-            subject.setYear((short) jsonObject.getInt("year"));
+            String mainland_pubdate = jsonObject.getString("mainland_pubdate");
+            if (StringUtils.isNotEmpty(mainland_pubdate)) {
+                subject.setPubDate(DateUtils.parseDate(mainland_pubdate, "yyyy-mm-dd"));
+            }
+
+            if (StringUtils.isNotEmpty(jsonObject.getString("year"))) {
+                subject.setYear((short) jsonObject.getInt("year"));
+            }
 
             jsonArray = jsonObject.getJSONArray("languages");
             length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.get(0).toString());
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.get(i));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.get(0).toString());
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.get(i));
+                }
+                subject.setLanguages(sb.toString());
             }
-            subject.setLanguages(sb.toString());
 
             jsonArray = jsonObject.getJSONArray("durations");
             length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.get(0).toString());
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.get(i));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.get(0).toString());
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.get(i));
+                }
+                subject.setDurations(sb.toString());
             }
-            subject.setDurations(sb.toString());
 
             jsonArray = jsonObject.getJSONArray("genres");
             length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.get(0).toString());
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.get(i));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.get(0).toString());
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.get(i));
+                }
+                subject.setGenres(sb.toString());
             }
-            subject.setGenres(sb.toString());
 
             jsonArray = jsonObject.getJSONArray("countries");
             length = jsonArray.length();
-            sb = new StringBuilder(jsonArray.get(0).toString());
-            for (int i = 1; i < length; i++) {
-                sb.append("/").append(jsonArray.get(i));
+            if (length > 0) {
+                sb = new StringBuilder(jsonArray.get(0).toString());
+                for (int i = 1; i < length; i++) {
+                    sb.append("/").append(jsonArray.get(i));
+                }
+                subject.setCountries(sb.toString());
             }
-            subject.setCountries(sb.toString());
 
             subject.setSummary(jsonObject.getString("summary"));
 
@@ -175,5 +194,29 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
 
         }
         return result;
+    }
+
+    @Override
+    public void saveBysearch(String q) {
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        String url = "https://api.douban.com/v2/movie/search?q=" + q;
+        HttpGet httpGet = new HttpGet(url);
+        //创建响应处理器处理服务器响应内容
+        ResponseHandler<String> responseHandler = new BasicResponseHandler();
+        JSONObject jsonObject;
+        JSONArray jsonArray;
+        int length;
+        try {
+            String responseBody = httpClient.execute(httpGet, responseHandler);
+            jsonObject = new JSONObject(responseBody);
+            jsonArray = jsonObject.getJSONArray("subjects");
+            length = jsonArray.length();
+            for (int i = 0; i < length; i++) {
+                find(jsonArray.getJSONObject(i).getString("id"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
