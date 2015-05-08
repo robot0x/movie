@@ -59,7 +59,7 @@ define(function (require, exports, module) {
                     <div class="pull-left margin-left-10 film-desc"><div class ="margin-bottom-10"><a  style="color: #9B8282;" href="/subject/' + item.id + '">' + item.title + "(" + item.year + ")" + '</a></div>\
                     <table class="table" style="font-size:12px;"><tbody><tr>\
                     <td width="50px">评分</td><td><span class="badge" style="color: orange; font-weight: bold;">' + item.rating.toFixed(2) + '</span></td>\
-                    </tr><tr><td>类型</td><td>' + item.genres + '</td></tr><tr><td>主演</td><td>' + item.casts + '</td></tr>\
+                    </tr><tr><td>类型</td><td>' + (item.genres == null ? "" : item.genres) + '</td></tr><tr><td>主演</td><td>' + (item.casts == null ? "" : item.casts) + '</td></tr>\
                     </tbody></table></div><div class="clearfix"></div></div></li>');
                 });
                 if (showPaginator) {

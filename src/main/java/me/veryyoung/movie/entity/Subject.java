@@ -68,7 +68,7 @@ public class Subject {
 
 
     public double getRating() {
-        return totalRating / ratingCount;
+        return ratingCount == 0 ? 0 : (totalRating / ratingCount);
     }
 
     public String getImage() {
