@@ -48,6 +48,10 @@ public class SubjectDao extends BaseDao<Subject> {
             criteria.add(Restrictions.disjunction()
                             .add(Restrictions.like("title", "%".concat(key).concat("%")))
                             .add(Restrictions.like("originalTitle", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("casts", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("directors", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("writers", "%".concat(key).concat("%")))
+
             );
         }
         criteria.setFirstResult(start);
@@ -73,8 +77,11 @@ public class SubjectDao extends BaseDao<Subject> {
         }
         if (StringUtils.isNotEmpty(key)) {
             criteria.add(Restrictions.disjunction()
-                    .add(Restrictions.like("title", "%".concat(key).concat("%")))
-                    .add(Restrictions.like("originalTitle", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("title", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("originalTitle", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("casts", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("directors", "%".concat(key).concat("%")))
+                            .add(Restrictions.like("writers", "%".concat(key).concat("%")))
             );
         }
         Long count = (Long) (criteria.uniqueResult());
