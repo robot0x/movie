@@ -2,8 +2,8 @@ package me.veryyoung.movie.dao;
 
 import me.veryyoung.movie.entity.Comment;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,11 +18,10 @@ public class CommentDao extends BaseDao<Comment> {
         super(Comment.class);
     }
 
-    public int countBySubjectId(String id) {
-        Criteria criteria = getCurrentSession().createCriteria(Comment.class);
-        criteria.add(Restrictions.eq("id", id));
-        criteria.setProjection(Projections.rowCount());
-        return ((Long) criteria.uniqueResult()).intValue();
+    public int countBySubjectId(String subjectId) {
+        Query query = getCurrentSession().createQuery("select count(*) from Comment as comment where comment.subjectId = :subjectId");
+        query.setString("subjectId", subjectId);
+        return ((Long) query.uniqueResult()).intValue();
     }
 
     public List<Comment> list(int start, int end) {
