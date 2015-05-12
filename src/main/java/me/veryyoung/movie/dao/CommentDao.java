@@ -24,11 +24,12 @@ public class CommentDao extends BaseDao<Comment> {
         return ((Long) query.uniqueResult()).intValue();
     }
 
-    public List<Comment> list(int start, int end) {
-        Criteria criteria = getCurrentSession().createCriteria(Comment.class);
-        criteria.setFirstResult(start);
-        criteria.setMaxResults(end);
-        return criteria.list();
+    public List<Comment> listBySubjectId(String subjectId, int start, int end) {
+        Query query = getCurrentSession().createQuery("from Comment as comment where comment.subjectId = :subjectId");
+        query.setString("subjectId", subjectId);
+        query.setFirstResult(start);
+        query.setMaxResults(end);
+        return query.list();
     }
 
 }

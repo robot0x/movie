@@ -105,8 +105,8 @@
                                 <c:forEach items="${comments}" var="comment">
                                     <div class="comment-list">
                                         <div class="list-title">
-                                            <div class="pull-left blue">${comment.userId}</div>
-                                            <div class="pull-left allstar${comment.ratimg} rating"></div>
+                                            <div class="pull-left blue">${appUtils.findUserNameById(comment.userId)}</div>
+                                            <div class="pull-left allstar${comment.rating}"></div>
                                             <div class="pull-left gray">${comment.submitDate}</div>
                                             <div class="clearfix"></div>
                                         </div>
