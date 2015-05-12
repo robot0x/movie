@@ -368,4 +368,62 @@ a, a:hover {
     padding: 10px;
 }
 
+/** rating **/
+.allstar1, .allstar2, .allstar3, .allstar4, .allstar5, .allstar6, .allstar7, .allstar8, .allstar9, .allstar10 {
+    display: inline-block;
+    zoom: 1;
+    width: 55px;
+    height: 11px;
+    background: url(/assets/images/midstars.gif) no-repeat;
+    margin: 2px 10px 0 8px;
+    overflow: hidden;
+}
+
+.allstar1 {
+    background-position: 0 -99px;
+}
+
+.allstar2 {
+    background-position: 0 -88px;
+}
+
+.allstar3 {
+    background-position: 0 -77px;
+}
+
+.allstar4 {
+    background-position: 0 -66px;
+}
+
+.allstar5 {
+    background-position: 0 -55px;
+}
+
+.allstar6 {
+    background-position: 0 -44px;
+}
+
+.allstar7 {
+    background-position: 0 -33px;
+}
+
+.allstar8 {
+    background-position: 0 -22px;
+}
+
+.allstar9 {
+    background-position: 0 -11px;
+}
+
+.allstar10 {
+    background-position: 0 0;
+}
+
+.pl2 {
+    font: 14px Arial, Helvetica, sans-serif;
+    line-height: 150%;
+    color: #666;
+    margin: 10px 0;
+}
+
 

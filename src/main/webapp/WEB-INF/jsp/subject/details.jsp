@@ -102,7 +102,7 @@
                         <div class="comment-list">
                             <div class="list-title">
                                 <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left"><img src="../assets/images/pic-1.png"></div>
+                                <div class="pull-left allstar10 rating"></div>
                                 <div class="pull-left gray">2015-5-12</div>
                                 <div class="clearfix"></div>
                             </div>
