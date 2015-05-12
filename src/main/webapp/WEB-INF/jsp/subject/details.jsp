@@ -93,70 +93,44 @@
                     <div class="comment-content">
                         <div class="short-comment">
                             <div class="pull-left"><span class="green">${subject.title}的短评......</span><a
-                                    href="/subject/${id}/comments"><span class="blue">（全部${count}条）</span></a></div>
+                                    href="/subject/${id}/comments"><span class="blue">（全部${commentsCount}条）</span></a>
+                            </div>
                             <div class="pull-right red"><a data-toggle="modal" data-target="#comment">我来说两句</a></div>
                             <div class=" clearfix">
                             </div>
                         </div>
                         <div class="margin-top-10"></div>
-                        <div class="comment-list">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar10 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                “还惦记出生入死吗？” 最好的一部，阿塞拜疆山林追车戏，阿布扎比高楼穿越戏，前后紧凑一气呵成，这才是我想要的《速度与激情》。最后的告别，
-                                最后的STOP，最后的保罗·沃克。“怎么说的出口再见？”
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left"><img src="../assets/images/pic-1.png"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                “还惦记出生入死吗？” 最好的一部，阿塞拜疆山林追车戏，阿布扎比高楼穿越戏，前后紧凑一气呵成，这才是我想要的《速度与激情》。最后的告别，
-                                最后的STOP，最后的保罗·沃克。“怎么说的出口再见？”
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left"><img src="../assets/images/pic-1.png"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                “还惦记出生入死吗？” 最好的一部，阿塞拜疆山林追车戏，阿布扎比高楼穿越戏，前后紧凑一气呵成，这才是我想要的《速度与激情》。最后的告别，
-                                最后的STOP，最后的保罗·沃克。“怎么说的出口再见？”
-                            </div>
-                        </div>
-                        <div class="comment-list">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left"><img src="../assets/images/pic-1.png"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                “还惦记出生入死吗？” 最好的一部，阿塞拜疆山林追车戏，阿布扎比高楼穿越戏，前后紧凑一气呵成，这才是我想要的《速度与激情》。最后的告别，
-                                最后的STOP，最后的保罗·沃克。“怎么说的出口再见？”
-                            </div>
-                        </div>
+                        <c:choose>
+                            <c:when test="${commentsCount > 0}">
+                                <c:forEach items="${comments}" var="comment">
+                                    <div class="comment-list">
+                                        <div class="list-title">
+                                            <div class="pull-left blue">${appUtils.findUserNameById(comment.userId)}</div>
+                                            <div class="pull-left allstar${comment.rating}"></div>
+                                            <div class="pull-left gray">${comment.submitDate}</div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="list-content">
+                                                ${comment.content}
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                暂无评论
+                            </c:otherwise>
+                        </c:choose>
+                        <div class="margin-top-20"></div>
                     </div>
+                    <div class="col-md-1"></div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="margin-top-20"></div>
             </div>
-            <div class="col-md-1"></div>
-            <div class="clearfix"></div>
         </div>
     </div>
-    <%@include file="../common/footer.jspf" %>
-    <%@include file="comment.jspf" %>
+</div>
+<%@include file="../common/footer.jspf" %>
+<%@include file="comment.jspf" %>
 
 
 </body>

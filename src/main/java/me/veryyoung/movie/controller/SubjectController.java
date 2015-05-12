@@ -34,8 +34,12 @@ public class SubjectController extends BaseController {
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id) {
         ModelAndView modelAndView = new ModelAndView("/subject/details");
-        modelAndView.addObject("count", commentDao.countBySubjectId(id));
         modelAndView.addObject("subject", doubanService.find(id));
+        int commentsCount = commentDao.countBySubjectId(id);
+        if (commentsCount > 0) {
+            modelAndView.addObject("comments", commentDao.listBySubjectId(id, 0, 5));
+        }
+        modelAndView.addObject("commentsCount", commentsCount);
         return modelAndView;
     }
 
@@ -54,7 +58,7 @@ public class SubjectController extends BaseController {
         comment.setSubmitDate(new Date());
         commentDao.create(comment);
         Subject subject = doubanService.find(id);
-        subject.setTotalRating(subject.getRatingCount() + comment.getRating());
+        subject.setTotalRating(subject.getTotalRating() + comment.getRating());
         subject.setRatingCount(subject.getRatingCount() + 1);
         subjectDao.update(subject);
         return "redirect:/subject/" + id;
