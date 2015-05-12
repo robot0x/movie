@@ -31,4 +31,9 @@ public class SubjectController extends BaseController {
         return modelAndView;
     }
 
+    @RequestMapping("/comment")
+    public String getComment() {
+        return "/subject/comment";
+    }
+
 }
