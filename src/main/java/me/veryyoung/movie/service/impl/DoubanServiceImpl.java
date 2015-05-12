@@ -194,13 +194,14 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
         String responseBody = HttpClientUtils.get(String.format(DOUBAN_SEARCH_URL, q));
         jsonObject = new JSONObject(responseBody);
         jsonArray = jsonObject.getJSONArray("subjects");
-        logger.info("jsonArray:{}", jsonArray);
-        logger.info("jsonArray.getJSONObject(1):{}", jsonArray.getJSONObject(1).getString("id"));
-        logger.info("jsonArray.getJSONObject(0):{}", jsonArray.getJSONObject(0).getString("id"));
         length = jsonArray.length();
+        JSONObject jo;
         if (length > 0) {
             for (int i = 0; i < length; i++) {
-                find(jsonArray.getJSONObject(i).getString("id"));
+                jo = jsonArray.optJSONObject(i);
+                if (null != jo) {
+                    find(jo.getString("id"));
+                }
             }
         }
     }
