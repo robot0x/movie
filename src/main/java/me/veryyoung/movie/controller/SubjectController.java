@@ -1,7 +1,9 @@
 package me.veryyoung.movie.controller;
 
 import me.veryyoung.movie.dao.CommentDao;
+import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Comment;
+import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.service.DoubanService;
 import me.veryyoung.movie.utils.ContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class SubjectController extends BaseController {
     @Autowired
     private CommentDao commentDao;
 
+    @Autowired
+    private SubjectDao subjectDao;
+
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id) {
         ModelAndView modelAndView = new ModelAndView("/subject/details");
@@ -48,6 +53,10 @@ public class SubjectController extends BaseController {
         comment.setUserId(ContextUtils.getUserId(request));
         comment.setSubmitDate(new Date());
         commentDao.create(comment);
+        Subject subject = doubanService.find(id);
+        subject.setTotalRating(subject.getRatingCount() + comment.getRating());
+        subject.setRatingCount(subject.getRatingCount() + 1);
+        subjectDao.update(subject);
         return "redirect:/subject/" + id;
     }
 
