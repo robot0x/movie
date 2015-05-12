@@ -27,10 +27,11 @@ public class CategoryController extends BaseController {
     @RequestMapping({"/index", ""})
     public ModelAndView index(String key) {
         ModelAndView modelAndView = new ModelAndView("/category/list");
+        key = key.trim();
         if (StringUtils.isNotEmpty(key)) {
             modelAndView.addObject("key", key);
         }
-        doubanService.saveBysearch(key);
+        doubanService.saveBySearch(key);
         return modelAndView;
     }
 

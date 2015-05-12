@@ -14,6 +14,6 @@ public interface DoubanService {
 
     public List<Subject> findPlaying();
 
-    public void saveBysearch(String q);
+    public void saveBySearch(String q);
 
 }
