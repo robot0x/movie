@@ -29,6 +29,7 @@ public class SubjectController extends BaseController {
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id) {
         ModelAndView modelAndView = new ModelAndView("/subject/details");
+        modelAndView.addObject("count", commentDao.countBySubjectId(id));
         modelAndView.addObject("subject", doubanService.find(id));
         return modelAndView;
     }
@@ -37,6 +38,7 @@ public class SubjectController extends BaseController {
     public ModelAndView getComments(@PathVariable(value = "id") String id) {
         ModelAndView modelAndView = new ModelAndView("/subject/comments");
         modelAndView.addObject("subject", doubanService.find(id));
+        modelAndView.addObject("count", commentDao.countBySubjectId(id));
         return modelAndView;
     }
 
