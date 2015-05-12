@@ -2,9 +2,11 @@
     width: 950px;
     margin: 0 auto;
 }
+
 #content {
     min-height: 420px;
 }
+
 h1 {
     word-wrap: break-word;
     display: block;
@@ -15,47 +17,54 @@ h1 {
     padding: 0 0 15px 0;
     line-height: 1.1;
 }
+
 .all .article {
     width: 590px;
     padding-right: 40px;
 }
+
 .all .aside {
     width: 310px;
 }
+
 .title-line {
     padding-bottom: 4px;
     margin-top: 14px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
 }
+
 .color-gray {
     color: #666;
 }
-.gray{
+
+.gray {
     color: gray;
 }
-.blue{
+
+.blue {
     color: #009bff;
 }
+
 #comments {
     width: 100%;
     word-wrap: break-word;
     overflow: hidden;
     padding: 20px 0 0;
 }
+
 .comment-item {
     margin: 10px 0 12px 0;
     padding-bottom: 20px;
     border-bottom: 1px dashed #ddd;
     overflow: hidden;
 }
+
 .comment-item .rating {
     margin-left: 8px;
 }
-.allstar50 {
-    background-position: 0 0;
-}
-.allstar50, .allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05 {
+
+.allstar1, .allstar2, .allstar3, .allstar4, .allstar5, .allstar6, .allstar7, .allstar8, .allstar9, .allstar10 {
     display: inline-block;
     zoom: 1;
     width: 55px;
@@ -64,13 +73,55 @@ h1 {
     margin: 2px 10px 0 8px;
     overflow: hidden;
 }
+
+.allstar1 {
+    background-position: 0 -99px;
+}
+
+.allstar2 {
+    background-position: 0 -88px;
+}
+
+.allstar3 {
+    background-position: 0 -77px;
+}
+
+.allstar4 {
+    background-position: 0 -66px;
+}
+
+.allstar5 {
+    background-position: 0 -55px;
+}
+
+.allstar6 {
+    background-position: 0 -44px;
+}
+
+.allstar7 {
+    background-position: 0 -33px;
+}
+
+.allstar8 {
+    background-position: 0 -22px;
+}
+
+.allstar9 {
+    background-position: 0 -11px;
+}
+
+.allstar10 {
+    background-position: 0 0;
+}
+
 .pl2 {
-    font: 14px Arial,Helvetica,sans-serif;
+    font: 14px Arial, Helvetica, sans-serif;
     line-height: 150%;
     color: #666;
     margin: 10px 0;
 }
-.pic{
+
+.pic {
     margin-bottom: 15px;
     margin-top: 3px;
 }
