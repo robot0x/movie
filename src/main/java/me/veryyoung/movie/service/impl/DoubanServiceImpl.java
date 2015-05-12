@@ -175,6 +175,7 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
             jsonObject = new JSONObject(responseBody);
             jsonArray = jsonObject.getJSONArray("entries");
             length = jsonArray.length();
+            logger.debug("{} movies are playing", length);
             playingList = new ArrayList<>(length);
             for (int i = 0; i < length; i++) {
                 id = jsonArray.getJSONObject(i).getString("id");
@@ -183,8 +184,6 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
                 playingList.add(new Playing(id));
             }
             playingDao.renew(playingList);
-
-
         }
         return result;
     }
