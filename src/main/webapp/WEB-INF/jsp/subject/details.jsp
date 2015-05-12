@@ -94,8 +94,7 @@
                         <div class="short-comment">
                             <div class="pull-left"><span class="green">${subject.title}的短评......</span><a
                                     href="/subject/${id}/comments"><span class="blue">（全部845条）</span></a></div>
-                            <div class="pull-right red"><a data-toggle="modal" data-target="#comment"
-                                                           href="/subject/comment">我来说两句</a></div>
+                            <div class="pull-right red"><a data-toggle="modal" data-target="#comment">我来说两句</a></div>
                             <div class=" clearfix">
                             </div>
                         </div>
@@ -157,5 +156,8 @@
         </div>
     </div>
     <%@include file="../common/footer.jspf" %>
+    <%@include file="comment.jspf" %>
+
+
 </body>
 </html>
