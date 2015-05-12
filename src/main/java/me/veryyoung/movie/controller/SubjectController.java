@@ -24,4 +24,11 @@ public class SubjectController extends BaseController {
         return modelAndView;
     }
 
+    @RequestMapping("/{id}/comments")
+    public ModelAndView getComments(@PathVariable(value = "id") String id) {
+        ModelAndView modelAndView = new ModelAndView("/subject/comments");
+        modelAndView.addObject("subject", doubanService.find(id));
+        return modelAndView;
+    }
+
 }
