@@ -34,8 +34,10 @@ public class SubjectController extends BaseController {
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id) {
         ModelAndView modelAndView = new ModelAndView("/subject/details");
-        modelAndView.addObject("count", commentDao.countBySubjectId(id));
         modelAndView.addObject("subject", doubanService.find(id));
+        modelAndView.addObject("comments", commentDao.list(0, 5));
+        logger.info("count:{}",commentDao.countBySubjectId(id));
+        modelAndView.addObject("commentsCount", commentDao.countBySubjectId(id));
         return modelAndView;
     }
 
