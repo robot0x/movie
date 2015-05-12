@@ -1,0 +1,76 @@
+#wrapper {
+    width: 950px;
+    margin: 0 auto;
+}
+#content {
+    min-height: 420px;
+}
+h1 {
+    word-wrap: break-word;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #494949;
+    margin: 0;
+    padding: 0 0 15px 0;
+    line-height: 1.1;
+}
+.all .article {
+    width: 590px;
+    padding-right: 40px;
+}
+.all .aside {
+    width: 310px;
+}
+.title-line {
+    padding-bottom: 4px;
+    margin-top: 14px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.color-gray {
+    color: #666;
+}
+.gray{
+    color: gray;
+}
+.blue{
+    color: #009bff;
+}
+#comments {
+    width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 20px 0 0;
+}
+.comment-item {
+    margin: 10px 0 12px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ddd;
+    overflow: hidden;
+}
+.comment-item .rating {
+    margin-left: 8px;
+}
+.allstar50 {
+    background-position: 0 0;
+}
+.allstar50, .allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05 {
+    display: inline-block;
+    zoom: 1;
+    width: 55px;
+    height: 11px;
+    background: url(http://img3.douban.com/f/shire/5cb30ab98d8deb43ff321ef2c64493cbd2d6c057/pics/movie/midstars.gif?qq-pf-to=pcqq.c2c) no-repeat;
+    margin: 2px 10px 0 8px;
+    overflow: hidden;
+}
+.pl2 {
+    font: 14px Arial,Helvetica,sans-serif;
+    line-height: 150%;
+    color: #666;
+    margin: 10px 0;
+}
+.pic{
+    margin-bottom: 15px;
+    margin-top: 3px;
+}
