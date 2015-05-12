@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row-fluid">
-                    <form class="form-horizontal" id="form_comment" role="form" action="/subject/comment/${subject.id}"
+                    <form class="form-horizontal" id="form_comment" role="form" action="/subject/${subject.id}/comment"
                           method="POST">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">评分</label>
@@ -26,7 +26,7 @@
                             <label class="col-sm-3 control-label">评论</label>
 
                             <div class="col-sm-5">
-                                <textarea class="form-control" id="txt_content" name="password"
+                                <textarea class="form-control" id="txt_content" name="content"
                                           placeholder="请输入简评"></textarea>
                             </div>
                         </div>

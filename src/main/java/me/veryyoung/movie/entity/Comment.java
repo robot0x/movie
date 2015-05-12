@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by veryyoung on 2015/5/11.
@@ -26,4 +27,6 @@ public class Comment {
     private short rating;
 
     private String content;
+
+    private Date submitDate;
 }

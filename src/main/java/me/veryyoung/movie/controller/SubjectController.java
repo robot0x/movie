@@ -1,11 +1,17 @@
 package me.veryyoung.movie.controller;
 
+import me.veryyoung.movie.dao.CommentDao;
+import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.service.DoubanService;
+import me.veryyoung.movie.utils.ContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 /**
  * Created by veryyoung on 2015/3/18.
@@ -16,6 +22,9 @@ public class SubjectController extends BaseController {
 
     @Autowired
     private DoubanService doubanService;
+
+    @Autowired
+    private CommentDao commentDao;
 
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id) {
@@ -29,6 +38,15 @@ public class SubjectController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("/subject/comments");
         modelAndView.addObject("subject", doubanService.find(id));
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
+    public String getComments(@PathVariable(value = "id") String id, Comment comment) {
+        comment.setSubjectId(id);
+        comment.setUserId(ContextUtils.getUserId(request));
+        comment.setSubmitDate(new Date());
+        commentDao.create(comment);
+        return "redirect:/subject/" + id;
     }
 
 
