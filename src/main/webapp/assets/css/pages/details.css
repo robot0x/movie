@@ -60,7 +60,7 @@ p{
 .gray{
     color: gray;
 }
-.cator-comment,.comment-list{
+.comment-list{
     margin-bottom: 18px;
     padding-bottom: 18px;
     border-bottom: 1px dashed #ddd;
