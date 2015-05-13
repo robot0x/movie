@@ -66,6 +66,7 @@ public class SubjectController extends BaseController {
         Subject subject = doubanService.find(id);
         subject.setTotalRating(subject.getTotalRating() + comment.getRating());
         subject.setRatingCount(subject.getRatingCount() + 1);
+        subject.setCommentCount(subject.getCommentCount() + 1);
         subjectDao.update(subject);
         return "redirect:/subject/" + id;
     }

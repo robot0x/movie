@@ -66,6 +66,9 @@ public class Subject {
     @Column(length = 1000)
     private String summary;
 
+    //评论次数
+    private int commentCount;
+
 
     public double getRating() {
         return ratingCount == 0 ? 0 : (totalRating / ratingCount);
