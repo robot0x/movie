@@ -13,32 +13,27 @@
     <div id="content">
         <h1>${SessionUtils.user.userName}的影评（66）</h1>
 
+        <div class="margin-top-20"></div>
+
         <div class="all">
             <div class="col-md-9 article">
                 <div class="mod-bd" id="coments">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3 pic">
                         <img src="http://img3.douban.com/view/movie_poster_cover/spst/public/p511118051.jpg">
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-9 content">
                         <div class="comment-item">
                             <div class="comment">
                                 <div class="list-title">
                                     <div class="pull-left blue">${SessionUtils.user.userName}&nbsp;&nbsp;评论:《太平轮上》</div>
                                     <div class="pull-left allstar10 rating"></div>
                                     <div class="pull-right">
-                                        <div id="tb-7222584" class="rr">
-                                            <a id="af-7222584" rel="sw-False" href="http://movie.douban.com/review/7222584/" class="j a_unfolder" style="display: none; background: none;">
-                                                <img onclick="moreurl(this, {from:'review-show-full',track:'',owner:'3078390',itself:7222584})" src="http://img3.douban.com/pics/blank.gif" alt=">" width="48" height="19" class="bn-arrow" title="展开全文">
-                                            </a>
-                                            <a id="au-7222584" href="javascript:void(0);" class="j a_folder" style="display: inline; background: none;">
-                                                <img src="http://img3.douban.com/pics/blank.gif" alt="<" width="48" height="19" class="bn-arrow" title="缩进全文">
-                                            </a>
-
-                                        </div>
+                                        <div id="read-more"></div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="list-content">
+                                <div class="margin-top-10"></div>
+                                <div class="list-content" id="wrap">
                                     去年年初，因为工作原因，我看了《太平轮》的剧本，当时好像还是叫《生死恋》，记得是七八万字，远超出一般剧本的含量，
                                     看完想到的第一个问题是这怎么拍？因为有《赤壁》的前科，我想到吴宇森应该会拍上下集。但这个故事和《赤壁》不同，
                                     赤壁的故事中国人很熟悉，而且具有阶段性，即使分成上下集，并不影响故事的贯通。而《太平轮》采用的是经典的三段式戏剧结构，
@@ -54,42 +49,16 @@
                 </div>
             </div>
             <div class="col-md-3 aside">
-                <p class="pl2">>&nbsp;<a href="" class="blue" name="">我来写短评</a></p>
-
-                <p class="pl2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">去&nbsp;${subject.title}&nbsp;的页面</a></p>
+                <div class="margin-top-10"></div>
+                <p class="pl">用你的鼠标投票......</p>
+                <div class="margin-top-30"></div>
+                <p class="p2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">${SessionUtils.user.userName}的电影首页</a></p>
 
                 <div class="decri">
                     <div class="pic">
                         <img src="${subject.image}">
                     </div>
-                    <div class="details">
-                        <span class="attrs">
-                            <p>
-                                <span class="pl">导演:</span>${subject.directors}
-                            </p>
-
-                            <p>
-                                <span class="pl">主演:</span>${subject.casts}
-                            </p>
-
-                            <p>
-                                <span class="pl">类型:</span>${subject.genres}
-                            </p>
-
-                            <p>
-                                <span class="pl">地区:</span>${subject.countries}
-                            </p>
-
-                            <p>
-                                <span class="pl">片长:</span>${subject.durations}
-                            </p>
-
-                            <p>
-                                <span class="pl">上映:</span><fmt:formatDate value="${subject.pubDate}" pattern="yyyy年MM月dd日"/>
-                            </p>
-                        </span>
-                    </div>
-                    <div class="movie"></div>
+                    <div class="details"></div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -100,6 +69,35 @@
 
 <%@include file="common/footer.jspf" %>
 
+
+<script type="text/javascript" src="http://www.codefans.net/ajaxjs/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var slideHeight = 100; // px
+        var defHeight = $('#wrap').height();
+        if(defHeight >= slideHeight){
+            $('#wrap').css('height' , slideHeight + 'px');
+            $('#read-more').append('<a href="#"><img src="../assets/images/display.png" ></a>');
+            $('#read-more a').click(function(){
+                var curHeight = $('#wrap').height();
+                if(curHeight == slideHeight){
+                    $('#wrap').animate({
+                        height: defHeight
+                    }, "normal");
+//                    $('#read-more a').html('隐藏');
+                    $('#gradient').fadeOut();
+                }else{
+                    $('#wrap').animate({
+                        height: slideHeight
+                    }, "normal");
+//                    $('#read-more a').html('展开');
+                    $('#gradient').fadeIn();
+                }
+                return false;
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
