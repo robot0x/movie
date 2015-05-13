@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-4 aside">
-                <p class="pl2">>&nbsp;<a href="" class="blue" name="">我来写短评</a></p>
+                <p class="pl2">>&nbsp;<a data-toggle="modal" data-target="#comment" class="blue">我来写短评</a></p>
 
                 <p class="pl2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">去&nbsp;${subject.title}&nbsp;的页面</a>
                 </p>
@@ -88,6 +88,9 @@
         </div>
     </div>
 </div>
+<%@include file="../common/footer.jspf" %>
+<%@include file="comment.jspf" %>
 </body>
+
 
 </html>
