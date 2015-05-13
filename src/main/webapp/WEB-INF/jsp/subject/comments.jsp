@@ -3,7 +3,6 @@
 <head>
     <title>${subject.title}评论-${appName}</title>
     <%@include file="../common/head.jspf" %>
-    <link rel="stylesheet" type="text/css" href="/assets/css/pages/comments.css"/>
 </head>
 <body>
 <%@include file="../common/topNav.jspf" %>

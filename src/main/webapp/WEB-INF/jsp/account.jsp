@@ -4,7 +4,6 @@
     <title>个人中心-${appName}</title>
     <%@include file="common/head.jspf" %>
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/account.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/pages/comments.css"/>
 </head>
 <body>
 <%@include file="common/topNav.jspf" %>
@@ -19,7 +18,7 @@
             <div class="col-md-9 article">
                 <div class="mod-bd" id="coments">
                     <div class="col-sm-3 pic">
-                        <img src="http://img3.douban.com/view/movie_poster_cover/spst/public/p511118051.jpg">
+                        <img width="120px" height="170px" src="http://7xia3v.com1.z0.glb.clouddn.com/10741834">
                     </div>
                     <div class="col-sm-9 content">
                         <div class="comment-item">
@@ -28,7 +27,8 @@
                                     <div class="pull-left blue">${SessionUtils.user.userName}&nbsp;&nbsp;评论:《太平轮上》</div>
                                     <div class="pull-left allstar10 rating"></div>
                                     <div class="pull-right">
-                                        <div id="read-more"></div>
+                                        <div class="delete"><a href="#"><img src="../assets/images/display.png"></a>
+                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -51,11 +51,14 @@
             <div class="col-md-3 aside">
                 <div class="margin-top-10"></div>
                 <p class="pl">欢迎观看我的评论......</p>
+
                 <div class="margin-top-30"></div>
-                <p class="p2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">${SessionUtils.user.userName}的电影首页</a></p>
+                <p class="p2">>&nbsp;<a class="blue" name="">${SessionUtils.user.userName}的电影首页</a></p>
+
                 <div class="margin-top-30"></div>
                 <div class="decri">
                     <p>这是我对所有电影的评论，您也可以发表不同意见哦~~</p>
+
                     <div class="margin-top-10"></div>
                     <p>欢迎亲多来瞅瞅~~</p>
                 </div>
@@ -68,35 +71,6 @@
 
 <%@include file="common/footer.jspf" %>
 
-
-<script type="text/javascript" src="http://www.codefans.net/ajaxjs/jquery-1.6.2.min.js"></script>
-<script type="text/javascript">
-    $(function(){
-        var slideHeight = 100; // px
-        var defHeight = $('#wrap').height();
-        if(defHeight >= slideHeight){
-            $('#wrap').css('height' , slideHeight + 'px');
-            $('#read-more').append('<a href="#"><img src="../assets/images/display.png" ></a>');
-            $('#read-more a').click(function(){
-                var curHeight = $('#wrap').height();
-                if(curHeight == slideHeight){
-                    $('#wrap').animate({
-                        height: defHeight
-                    }, "normal");
-//                    $('#read-more a').html('隐藏');
-                    $('#gradient').fadeOut();
-                }else{
-                    $('#wrap').animate({
-                        height: slideHeight
-                    }, "normal");
-//                    $('#read-more a').html('展开');
-                    $('#gradient').fadeIn();
-                }
-                return false;
-            });
-        }
-    });
-</script>
 
 </body>
 </html>
