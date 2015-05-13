@@ -23,7 +23,7 @@
                 <div class="mod-bd" id="coments">
                     <c:choose>
                         <c:when test="${subject.commentCount > 0}">
-                            <c:forEach items="${comments}" var="comment">
+                            <c:forEach items="${pageInfo.resultList}" var="comment">
                                 <div class="comment-list">
                                     <div class="list-title">
                                         <div class="pull-left blue">${appUtils.findUserNameById(comment.userId)}</div>
@@ -95,7 +95,9 @@
 <%@include file="comment.jspf" %>
 </body>
 <script type="text/javascript">
-    seajs.use("pages/comments");
+    seajs.use("pages/comments", function (comments) {
+        comments.init(${pageInfo.pageNo}, ${pageInfo.totalPages});
+    });
 </script>
 
 </html>

@@ -4,6 +4,7 @@ import me.veryyoung.movie.dao.CommentDao;
 import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.entity.Subject;
+import me.veryyoung.movie.rest.PageInfo;
 import me.veryyoung.movie.service.DoubanService;
 import me.veryyoung.movie.utils.ContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
@@ -44,13 +46,16 @@ public class SubjectController extends BaseController {
     }
 
     @RequestMapping("/{id}/comments")
-    public ModelAndView getComments(@PathVariable(value = "id") String id) {
+    public ModelAndView getComments(@PathVariable(value = "id") String id, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo) {
         ModelAndView modelAndView = new ModelAndView("/subject/comments");
         Subject subject = doubanService.find(id);
         modelAndView.addObject("subject", subject);
+        PageInfo<Comment> pageInfo = new PageInfo<>(pageNo, 5);
+        pageInfo.setTotalRows(subject.getCommentCount());
         if (subject.getCommentCount() > 0) {
-            modelAndView.addObject("comments", commentDao.listBySubjectId(id, 0, 5));
+            pageInfo.setResultList(commentDao.listBySubjectId(id, pageInfo.getStartRow(), 5));
         }
+        modelAndView.addObject("pageInfo", pageInfo);
         return modelAndView;
     }
 

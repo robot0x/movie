@@ -10,33 +10,31 @@ define(function (require, exports, module) {
      * @constructor
      */
     function Comments() {
-        this.init();
-        console.log('Comments init calling');
+        //this.init();
+        //console.log('Comments init calling');
     }
 
+
+    var paginator = require('bootstrap-paginator');
 
     /**
      * method to init page
      */
-    Comments.prototype.init = function () {
+    Comments.prototype.init = function (pageNo, pageSize) {
         var self = this;
-        self.paginator(1);
+        self.paginator(pageNo, pageSize);
     }
 
 
     /**
      * method to init paginator
      */
-    Comments.prototype.paginator = function (page) {
-
+    Comments.prototype.paginator = function (pageNo, pageSize) {
         var self = this;
-
-        var pageCount = 2;
-        var currentPage = page;
         var options = {
             bootstrapMajorVersion: 3, //版本
-            currentPage: currentPage, //当前页数
-            totalPages: pageCount, //总页数
+            currentPage: pageNo, //当前页数
+            totalPages: pageSize, //总页数
             itemTexts: function (type, page, current) {
                 switch (type) {
                     case "first":
@@ -50,10 +48,10 @@ define(function (require, exports, module) {
                     case "page":
                         return page;
                 }
-            }
-            ,//点击事件，
-            onPageClicked: function (event, originalEvent, type, page) {
-                self.paginator(page);
+            },
+            pageUrl: function (type, page, current) {
+                return window.location.pathname + "?pageNo=" + page;
+
             }
         };
         $('#paginator').bootstrapPaginator(options);
