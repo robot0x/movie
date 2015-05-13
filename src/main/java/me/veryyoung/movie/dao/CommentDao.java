@@ -30,4 +30,12 @@ public class CommentDao extends BaseDao<Comment> {
         return query.list();
     }
 
+    public List<Comment> listByUserId(String userId, int start, int end) {
+        Query query = getCurrentSession().createQuery("from Comment as comment where comment.userId = :userId order by comment.submitDate desc");
+        query.setString("userId", userId);
+        query.setFirstResult(start);
+        query.setMaxResults(end);
+        return query.list();
+    }
+
 }
