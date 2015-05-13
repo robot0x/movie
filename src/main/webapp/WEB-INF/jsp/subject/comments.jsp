@@ -17,133 +17,37 @@
         <div class="all">
             <div class="col-md-8 article">
                 <div class="title-line color-gray">
-                    <div class="pull-left">全部共138784条</div>
+                    <div class="pull-left">全部共${commentsCount}条</div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="mod-bd" id="coments">
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar10 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar20 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar30 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar40 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar50 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar50 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar50 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar50 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment">
-                            <div class="list-title">
-                                <div class="pull-left blue">杨雄伟</div>
-                                <div class="pull-left allstar50 rating"></div>
-                                <div class="pull-left gray">2015-5-12</div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="list-content">
-                                恐惧让你沦为囚犯，希望让你重获自由。——《肖申克的救赎》
-                            </div>
-                        </div>
-                    </div>
+                    <c:choose>
+                        <c:when test="${commentsCount > 0}">
+                            <c:forEach items="${comments}" var="comment">
+                                <div class="comment-list">
+                                    <div class="list-title">
+                                        <div class="pull-left blue">${appUtils.findUserNameById(comment.userId)}</div>
+                                        <div class="pull-left allstar${comment.rating}"></div>
+                                        <div class="pull-left gray">${comment.submitDate}</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="list-content">
+                                            ${comment.content}
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            暂无评论
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div class="col-md-4 aside">
                 <p class="pl2">>&nbsp;<a href="" class="blue" name="">我来写短评</a></p>
 
-                <p class="pl2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">去&nbsp;${subject.title}&nbsp;的页面</a></p>
+                <p class="pl2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">去&nbsp;${subject.title}&nbsp;的页面</a>
+                </p>
 
                 <div class="decri">
                     <div class="pic">
@@ -172,7 +76,8 @@
                             </p>
 
                             <p>
-                                <span class="pl">上映:</span><fmt:formatDate value="${subject.pubDate}" pattern="yyyy年MM月dd日"/>
+                                <span class="pl">上映:</span><fmt:formatDate value="${subject.pubDate}"
+                                                                           pattern="yyyy年MM月dd日"/>
                             </p>
                         </span>
                     </div>
