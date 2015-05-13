@@ -10,8 +10,10 @@
             </div>
             <div class="modal-body">
                 <div class="row-fluid">
-                    <form class="form-horizontal" id="form_comment" role="form" action="/subject/${subject.id}/comment"
+                    <form class="form-horizontal" id="form_comment" role="form" action="/comment/post"
                           method="POST">
+                        <input type="hidden" name="subjectId" value="${subject.id}"/>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">评分</label>
 

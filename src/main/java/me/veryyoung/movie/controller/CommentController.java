@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
+
+import java.util.Date;
 
 /**
  * Created by veryyoung on 2015/5/13.
@@ -25,6 +28,20 @@ public class CommentController extends BaseController {
 
     @Autowired
     private SubjectDao subjectDao;
+
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    public String getComments(Comment comment) {
+        comment.setUserId(ContextUtils.getUserId(request));
+        comment.setSubmitDate(new Date());
+        comment.setContent(HtmlUtils.htmlEscape(comment.getContent()));
+        commentDao.create(comment);
+        Subject subject = subjectDao.find(comment.getSubjectId());
+        subject.setTotalRating(subject.getTotalRating() + comment.getRating());
+        subject.setRatingCount(subject.getRatingCount() + 1);
+        subject.setCommentCount(subject.getCommentCount() + 1);
+        subjectDao.update(subject);
+        return "redirect:/subject/" + comment.getSubjectId();
+    }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
