@@ -106,9 +106,14 @@
                                 <c:forEach items="${comments}" var="comment">
                                     <div class="comment-list">
                                         <div class="list-title">
-                                            <div class="pull-left"><a class="blue" href="/user/${comment.userId}">${appUtils.findUserNameById(comment.userId)}</a></div>
+                                            <div class="pull-left"><a class="blue"
+                                                                      href="/user/${comment.userId}">${appUtils.findUserNameById(comment.userId)}</a>
+                                            </div>
                                             <div class="pull-left allstar${comment.rating}"></div>
-                                            <div class="pull-left gray">${comment.submitDate}</div>
+                                            <div class="pull-left gray">${comment.submitDate}&nbsp;&nbsp;&nbsp;
+                                                <button type="button" class="close  btn-danger" data-dismiss="alert">×
+                                                </button>
+                                            </div>
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="list-content">
