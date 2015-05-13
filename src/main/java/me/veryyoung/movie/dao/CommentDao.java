@@ -1,9 +1,8 @@
 package me.veryyoung.movie.dao;
 
 import me.veryyoung.movie.entity.Comment;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class CommentDao extends BaseDao<Comment> {
     }
 
     public List<Comment> listBySubjectId(String subjectId, int start, int end) {
-        Query query = getCurrentSession().createQuery("from Comment as comment where comment.subjectId = :subjectId");
+        Query query = getCurrentSession().createQuery("from Comment as comment where comment.subjectId = :subjectId order by submitDate desc");
         query.setString("subjectId", subjectId);
         query.setFirstResult(start);
         query.setMaxResults(end);
