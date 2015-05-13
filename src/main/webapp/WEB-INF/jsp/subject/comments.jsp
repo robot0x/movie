@@ -41,6 +41,9 @@
                             暂无评论
                         </c:otherwise>
                     </c:choose>
+                    <div class="margin-left-30 margin-top-30">
+                        <ul id="paginator"></ul>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 aside">
@@ -91,6 +94,8 @@
 <%@include file="../common/footer.jspf" %>
 <%@include file="comment.jspf" %>
 </body>
-
+<script type="text/javascript">
+    seajs.use("pages/comments");
+</script>
 
 </html>

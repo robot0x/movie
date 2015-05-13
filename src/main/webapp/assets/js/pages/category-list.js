@@ -14,6 +14,8 @@ define(function (require, exports, module) {
         console.log('List init calling');
     }
 
+    var paginator = require('bootstrap-paginator');
+
 
     /**
      * method to init page

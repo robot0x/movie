@@ -166,7 +166,7 @@
 </div>
 
 <%@include file="../common/footer.jspf" %>
-<script type="text/javascript" src="/assets/js/bootstrap-paginator.js"></script>
+
 
 </body>
 
