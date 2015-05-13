@@ -30,7 +30,8 @@
                                         </div>
                                         <div class="pull-left allstar${comment.rating}"></div>
                                         <div class="pull-left gray">${comment.submitDate}&nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="close  btn-danger" data-dismiss="alert">×
+                                            <button type="button" class="close  btn-danger delete_comment"
+                                                    data-dismiss="alert" value="${comment.id}">×
                                             </button>
                                         </div>
                                         <div class="clearfix"></div>
@@ -102,6 +103,7 @@
     seajs.use("pages/comments", function (comments) {
         comments.init(${pageInfo.pageNo}, ${pageInfo.totalPages});
     });
+    seajs.use("pages/delete-comment");
 </script>
 
 </html>

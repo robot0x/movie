@@ -111,7 +111,8 @@
                                             </div>
                                             <div class="pull-left allstar${comment.rating}"></div>
                                             <div class="pull-left gray">${comment.submitDate}&nbsp;&nbsp;&nbsp;
-                                                <button type="button" class="close  btn-danger" data-dismiss="alert">×
+                                                <button type="button" class="close  btn-danger delete_comment"
+                                                        data-dismiss="alert" value="${comment.id}">×
                                                 </button>
                                             </div>
                                             <div class="clearfix"></div>
@@ -137,7 +138,9 @@
 </div>
 <%@include file="../common/footer.jspf" %>
 <%@include file="comment.jspf" %>
-
+<script type="text/javascript">
+    seajs.use("pages/delete-comment");
+</script>
 
 </body>
 </html>

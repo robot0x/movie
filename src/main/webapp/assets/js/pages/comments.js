@@ -10,8 +10,6 @@ define(function (require, exports, module) {
      * @constructor
      */
     function Comments() {
-        //this.init();
-        //console.log('Comments init calling');
     }
 
 
