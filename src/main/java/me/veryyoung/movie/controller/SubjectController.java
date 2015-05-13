@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
 
@@ -60,6 +61,7 @@ public class SubjectController extends BaseController {
         comment.setSubjectId(id);
         comment.setUserId(ContextUtils.getUserId(request));
         comment.setSubmitDate(new Date());
+        comment.setContent(HtmlUtils.htmlEscape(comment.getContent()));
         commentDao.create(comment);
         Subject subject = doubanService.find(id);
         subject.setTotalRating(subject.getTotalRating() + comment.getRating());
