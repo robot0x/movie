@@ -50,15 +50,14 @@
             </div>
             <div class="col-md-3 aside">
                 <div class="margin-top-10"></div>
-                <p class="pl">用你的鼠标投票......</p>
+                <p class="pl">欢迎观看我的评论......</p>
                 <div class="margin-top-30"></div>
                 <p class="p2">>&nbsp;<a href="/subject/${subject.id}" class="blue" name="">${SessionUtils.user.userName}的电影首页</a></p>
-
+                <div class="margin-top-30"></div>
                 <div class="decri">
-                    <div class="pic">
-                        <img src="${subject.image}">
-                    </div>
-                    <div class="details"></div>
+                    <p>这是我对所有电影的评论，您也可以发表不同意见哦~~</p>
+                    <div class="margin-top-10"></div>
+                    <p>欢迎亲多来瞅瞅~~</p>
                 </div>
             </div>
             <div class="clearfix"></div>
