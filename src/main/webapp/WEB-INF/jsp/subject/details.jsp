@@ -93,7 +93,8 @@
                     <div class="comment-content">
                         <div class="short-comment">
                             <div class="pull-left"><span class="green">${subject.title}的短评......</span><a
-                                    href="/subject/${id}/comments"><span class="blue">（全部${commentsCount}条）</span></a>
+                                    href="/subject/${id}/comments"><span
+                                    class="blue">（全部${subject.commentCount}条）</span></a>
                             </div>
                             <div class="pull-right red"><a data-toggle="modal" data-target="#comment">我来说两句</a></div>
                             <div class=" clearfix">
@@ -101,7 +102,7 @@
                         </div>
                         <div class="margin-top-10"></div>
                         <c:choose>
-                            <c:when test="${commentsCount > 0}">
+                            <c:when test="${subject.commentCount > 0}">
                                 <c:forEach items="${comments}" var="comment">
                                     <div class="comment-list">
                                         <div class="list-title">

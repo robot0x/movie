@@ -17,12 +17,12 @@
         <div class="all">
             <div class="col-md-8 article">
                 <div class="title-line color-gray">
-                    <div class="pull-left">全部共${commentsCount}条</div>
+                    <div class="pull-left">全部共${subject.commentCount}条</div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="mod-bd" id="coments">
                     <c:choose>
-                        <c:when test="${commentsCount > 0}">
+                        <c:when test="${subject.commentCount > 0}">
                             <c:forEach items="${comments}" var="comment">
                                 <div class="comment-list">
                                     <div class="list-title">
