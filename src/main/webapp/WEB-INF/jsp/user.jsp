@@ -10,7 +10,7 @@
 <div id="wrapper">
     <div class="margin-top-40"></div>
     <div id="content">
-        <h1>${user.userName}的影评（66）</h1>
+        <h1>${user.userName}的影评（${commentCount}）</h1>
 
         <div class="margin-top-20"></div>
 
