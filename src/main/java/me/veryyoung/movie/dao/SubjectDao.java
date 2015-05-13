@@ -43,6 +43,8 @@ public class SubjectDao extends BaseDao<Subject> {
             criteria.addOrder(OrderBySqlFormulaUtils.sqlFormula("totalRating / ratingCount desc"));
         } else if (sort.equals("date")) {
             criteria.addOrder(Order.desc("pubDate"));
+        } else if (sort.equals("hot")) {
+            criteria.addOrder(Order.desc("commentCount"));
         }
         if (StringUtils.isNotEmpty(key)) {
             criteria.add(Restrictions.disjunction()
