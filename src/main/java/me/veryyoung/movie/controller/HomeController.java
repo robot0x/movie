@@ -106,7 +106,7 @@ public class HomeController extends BaseController {
 
         if (null != user && user.getPassword().equals(DigestUtils.md5Hex(password))) {
             ContextUtils.getSessionUtils(request).setUser(user);
-            return new ModelAndView("redirect:/account");
+            return new ModelAndView("redirect:/");
         } else {
             modelAndView.addObject("error", "用户名或密码错误");
             return modelAndView;

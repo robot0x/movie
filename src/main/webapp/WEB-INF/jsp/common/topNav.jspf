@@ -5,9 +5,6 @@
     <div class="top-bar">
         <div class="navbar-inner">
             <div class="container">
-                <%--<a class="btn btn-navbar"><span--%>
-                <%--class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>--%>
-
                 <div class="pull-left">
                     <div class="col-md-4"><a class="brand" href="/">${appName}</a></div>
                     <div class="col-md-6">
@@ -32,7 +29,7 @@
                     <c:choose>
                         <c:when test="${SessionUtils.user != null}">
                             <li class="pull-left">
-                                <a class="link-signin" href="/account">
+                                <a class="link-signin" href="/user/${SessionUtils.user.id}">
                                     <i class="fa fa-user fa-fw"></i><font id="nav_nickname">
                                     欢迎${SessionUtils.user.userName}
                                 </font>

@@ -3,7 +3,7 @@
 <head>
     <title>个人中心-${appName}</title>
     <%@include file="common/head.jspf" %>
-    <link rel="stylesheet" type="text/css" href="/assets/css/pages/account.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/pages/user.css"/>
 </head>
 <body>
 <%@include file="common/topNav.jspf" %>

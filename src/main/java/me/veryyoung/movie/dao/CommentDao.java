@@ -16,9 +16,9 @@ public class CommentDao extends BaseDao<Comment> {
         super(Comment.class);
     }
 
-    public int countBySubjectId(String subjectId) {
-        Query query = getCurrentSession().createQuery("select count(*) from Comment as comment where comment.subjectId = :subjectId");
-        query.setString("subjectId", subjectId);
+    public int countByUserId(String userId) {
+        Query query = getCurrentSession().createQuery("select count(*) from Comment as comment where comment.userId = :userId");
+        query.setString("userId", userId);
         return ((Long) query.uniqueResult()).intValue();
     }
 
