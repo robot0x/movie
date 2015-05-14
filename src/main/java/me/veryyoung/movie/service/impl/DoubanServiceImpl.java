@@ -38,7 +38,7 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
 
     private static final String DOUBAN_SUBJECT_URL = DOUBAN_API_URL + "/subject/%s?" + DOUBAN_APIKEY;
 
-    private static final String DOUBAN_PLAYING_URL = DOUBAN_API_URL + "/nowplaying?" + DOUBAN_APIKEY;
+    public static final String DOUBAN_PLAYING_URL = DOUBAN_API_URL + "/nowplaying?" + DOUBAN_APIKEY;
 
     private static final String DOUBAN_SEARCH_URL = DOUBAN_API_URL + "/search?q=%s";
 
