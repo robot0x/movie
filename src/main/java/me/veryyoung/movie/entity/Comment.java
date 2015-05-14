@@ -26,6 +26,8 @@ public class Comment {
 
     private short rating;
 
+    //简介
+    @Column(length = 1000)
     private String content;
 
     private Date submitDate;
