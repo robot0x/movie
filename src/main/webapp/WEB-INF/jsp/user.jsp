@@ -45,7 +45,8 @@
                                                     <div class="clearfix"></div>
                                                 </div>
                                                 <div class="title2">
-                                                    <div class="pull-left">${user.userName}&nbsp;&nbsp;评论:《${subject.title}》</div>
+                                                    <div class="pull-left">${user.userName}&nbsp;&nbsp;评论:<a
+                                                            href="/subject/${subject.id}" class="blue">《${subject.title}》</a></div>
                                                     <div class="pull-left allstar10 rating"></div>
                                                     <div class="clearfix"></div>
                                                 </div>
