@@ -15,50 +15,52 @@
         <div class="margin-top-20"></div>
 
         <div class="all">
-            <c:choose>
-                <c:when test="${commentCount > 0}">
-                    <c:forEach items="${pageInfo.resultList}" var="comment">
-                        <c:set var="subject" scope="page" value="${appUtils.findSubjectById(comment.subjectId)}"/>
-                        <div class="col-md-9 article">
-                            <div class="mod-bd" id="coments">
-                                <div class="col-sm-3 pic">
-                                    <img width="120px" height="170px"
-                                         src="http://7xia3v.com1.z0.glb.clouddn.com/10741834">
-                                </div>
-                                <div class="col-sm-11 content">
-                                    <div class="comment-item">
-                                        <div class="comment">
-                                            <div class="list-title">
-                                                <div class="pull-left blue">${user.userName}&nbsp;&nbsp;评论:《${subject.title}》 ${comment.submitDate}</div>
-                                                <div class="pull-left allstar10 rating"></div>
-                                                <div class="pull-right">
-                                                    <div class="delete"><a href="#"><img
-                                                            src="../assets/images/display.png"></a>
+            <div class="col-md-8">
+                <c:choose>
+                    <c:when test="${commentCount > 0}">
+                        <c:forEach items="${pageInfo.resultList}" var="comment">
+                            <c:set var="subject" scope="page" value="${appUtils.findSubjectById(comment.subjectId)}"/>
+                            <div class="article">
+                                <div class="mod-bd" id="coments">
+                                    <div class="col-sm-3 pic">
+                                        <img width="120px" height="170px"
+                                             src="http://7xia3v.com1.z0.glb.clouddn.com/10741834">
+                                    </div>
+                                    <div class="col-sm-9 content">
+                                        <div class="comment-item">
+                                            <div class="comment">
+                                                <div class="list-title">
+                                                    <div class="pull-left blue">${comment.submitDate}</div>
+                                                    <div class="pull-right">
+                                                        <div class="delete"><a href="#"><img
+                                                                src="../assets/images/display.png"></a>
+                                                        </div>
                                                     </div>
+                                                    <div class="clearfix"></div>
                                                 </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="margin-top-10"></div>
-                                            <div class="list-content" id="wrap">
-                                                    ${comment.content}
+                                                <div class="title2">
+                                                    <div class="pull-left">${user.userName}&nbsp;&nbsp;评论:《${subject.title}》</div>
+                                                    <div class="pull-left allstar10 rating"></div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="list-content" id="wrap">
+                                                        ${comment.content}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    暂无评论
-                </c:otherwise>
-            </c:choose>
-            <div class="margin-left-30 margin-top-30">
-                <ul id="paginator"></ul>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        暂无评论
+                    </c:otherwise>
+                </c:choose>
             </div>
 
-
-            <div class="col-md-3 aside">
+            <div class="col-md-4 aside">
                 <div class="margin-top-10"></div>
                 <p class="pl">欢迎观看我的评论......</p>
 
@@ -74,6 +76,10 @@
                 </div>
             </div>
             <div class="clearfix"></div>
+        </div>
+
+        <div class="margin-left-30 margin-top-30">
+            <ul id="paginator"></ul>
         </div>
     </div>
 </div>
