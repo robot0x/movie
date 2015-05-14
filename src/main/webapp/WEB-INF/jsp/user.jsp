@@ -24,7 +24,7 @@
                                 <div class="mod-bd" id="coments">
                                     <div class="col-sm-3 pic">
                                         <img width="120px" height="170px"
-                                             src="http://7xia3v.com1.z0.glb.clouddn.com/10741834">
+                                             src="${subject.image}">
                                     </div>
                                     <div class="col-sm-9 content">
                                         <div class="comment-item">

@@ -27,12 +27,11 @@ public class SecurityTagHandler extends SimpleTagSupport {
     @Override
     public void doTag() throws JspException, IOException {
         SessionUtils sessionUtils = getSessionUtils();
-        if(null==sessionUtils){
+        if (null == sessionUtils) {
             return;
         }
         User currentUser = sessionUtils.getUser();
         if (null == currentUser) {
-            getJspBody().invoke(null);
             return;
         }
         if (currentUser.isAdmin() || currentUser.getId().equals(userId)) {
