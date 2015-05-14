@@ -12,6 +12,12 @@ public class ContextUtils {
 
 
     /**
+     * the attribute name of SessionUtils in session
+     */
+    public static final String SESSIONUTILS = "SessionUtils";
+
+
+    /**
      * 获取当前登录的用户
      *
      * @param request
@@ -48,12 +54,12 @@ public class ContextUtils {
     }
 
     public static SessionUtils getSessionUtils(final HttpSession session) {
-        if (session.getAttribute("SessionUtils") == null) {
+        if (session.getAttribute(SESSIONUTILS) == null) {
             SessionUtils sessionUtils = new SessionUtils();
-            session.setAttribute("SessionUtils", sessionUtils);
+            session.setAttribute(SESSIONUTILS, sessionUtils);
             return sessionUtils;
         } else {
-            return (SessionUtils) session.getAttribute("SessionUtils");
+            return (SessionUtils) session.getAttribute(SESSIONUTILS);
         }
     }
 

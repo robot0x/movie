@@ -29,10 +29,13 @@
                                                                   href="/user/${comment.userId}">${appUtils.findUserNameById(comment.userId)}</a>
                                         </div>
                                         <div class="pull-left allstar${comment.rating}"></div>
-                                        <div class="pull-left gray">${comment.submitDate}&nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="close  btn-danger delete_comment"
-                                                    data-dismiss="alert" value="${comment.id}">×
-                                            </button>
+                                        <div class="pull-left gray">${comment.submitDate}
+                                            <mv:securityTag userId="${comment.userId}">
+                                                &nbsp;&nbsp;&nbsp;
+                                                <button type="button" class="close  btn-danger delete_comment"
+                                                        data-dismiss="alert" value="${comment.id}">×
+                                                </button>
+                                            </mv:securityTag>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

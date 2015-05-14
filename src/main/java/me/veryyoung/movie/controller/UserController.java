@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/user")
-@LoginRequired
 public class UserController extends BaseController {
 
     @Autowired

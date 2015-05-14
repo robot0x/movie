@@ -30,10 +30,16 @@
                                         <div class="comment-item">
                                             <div class="comment">
                                                 <div class="list-title">
-                                                    <div class="pull-left blue">${comment.submitDate}</div>
+                                                    <div class="pull-left blue">${comment.submitDate}
+                                                    </div>
                                                     <div class="pull-right">
-                                                        <div class="delete"><a href="#"><img
-                                                                src="../assets/images/display.png"></a>
+                                                        <div class="delete"><mv:securityTag userId="${comment.userId}">
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <button type="button"
+                                                                    class="close  btn-danger delete_comment"
+                                                                    data-dismiss="alert" value="${comment.id}">×
+                                                            </button>
+                                                        </mv:securityTag>
                                                         </div>
                                                     </div>
                                                     <div class="clearfix"></div>

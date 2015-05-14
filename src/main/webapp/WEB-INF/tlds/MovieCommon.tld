@@ -31,4 +31,16 @@
         </attribute>
     </tag>
 
+    <tag>
+        <name>securityTag</name>
+        <tag-class>me.veryyoung.movie.taglib.SecurityTagHandler</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>userId</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
 </taglib>
