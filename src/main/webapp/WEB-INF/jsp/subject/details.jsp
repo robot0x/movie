@@ -101,6 +101,15 @@
                             </div>
                         </div>
                         <div class="margin-top-10"></div>
+                        <c:if test="${not empty error}">
+                            <div class="form-group">
+                                <div class="alert alert-danger"
+                                     role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                        ${error}
+                                </div>
+                            </div>
+                        </c:if>
                         <c:choose>
                             <c:when test="${subject.commentCount > 0}">
                                 <c:forEach items="${comments}" var="comment">

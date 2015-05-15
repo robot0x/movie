@@ -5,6 +5,7 @@ import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.rest.PageInfo;
 import me.veryyoung.movie.service.DoubanService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +27,15 @@ public class SubjectController extends BaseController {
     private CommentDao commentDao;
 
     @RequestMapping("/{id}")
-    public ModelAndView getSubject(@PathVariable(value = "id") String id) {
+    public ModelAndView getSubject(@PathVariable(value = "id") String id, String error) {
         ModelAndView modelAndView = new ModelAndView("/subject/details");
         Subject subject = doubanService.find(id);
         modelAndView.addObject("subject", subject);
         if (subject.getCommentCount() > 0) {
             modelAndView.addObject("comments", commentDao.listBySubjectId(id, 0, 5));
+        }
+        if (StringUtils.isNotEmpty(error)) {
+            modelAndView.addObject("error", error);
         }
         return modelAndView;
     }

@@ -7,11 +7,13 @@ import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.rest.RestData;
 import me.veryyoung.movie.utils.ContextUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
@@ -30,7 +32,12 @@ public class CommentController extends BaseController {
     private SubjectDao subjectDao;
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String getComments(Comment comment) {
+    public ModelAndView getComments(Comment comment) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/subject/" + comment.getSubjectId());
+        if (StringUtils.isEmpty(ContextUtils.getUserId(request))) {
+            modelAndView.addObject("error", "登陆后才能发布评论");
+            return modelAndView;
+        }
         comment.setUserId(ContextUtils.getUserId(request));
         comment.setSubmitDate(new Date());
         comment.setContent(HtmlUtils.htmlEscape(comment.getContent()));
@@ -40,7 +47,7 @@ public class CommentController extends BaseController {
         subject.setRatingCount(subject.getRatingCount() + 1);
         subject.setCommentCount(subject.getCommentCount() + 1);
         subjectDao.update(subject);
-        return "redirect:/subject/" + comment.getSubjectId();
+        return modelAndView;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
