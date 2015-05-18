@@ -7,7 +7,6 @@
     <title>首页 - ${appName}</title>
     <%@include file="common/head.jspf" %>
     <link rel="stylesheet" type="text/css" href="/assets/css/pages/index.css"/>
-
 </head>
 <body>
 <%@include file="common/topNav.jspf" %>
