@@ -59,6 +59,9 @@ public class DoubanServiceImpl extends BaseService implements DoubanService {
         }
 
         String responseBody = HttpClientUtils.get(String.format(DOUBAN_SUBJECT_URL, id));
+        if (StringUtils.isEmpty(responseBody)) {
+            return null;
+        }
         jsonObject = new JSONObject(responseBody);
         subject = new Subject();
         subject.setId(jsonObject.getString("id"));
