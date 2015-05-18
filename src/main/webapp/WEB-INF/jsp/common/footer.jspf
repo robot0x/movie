@@ -11,6 +11,8 @@
                     <ul class="list-inline">
                         <!-- Link -->
                         <li><span>友情链接：</span></li>
+                        <li><a href="http://movie.douban.com/" target="_blank">豆瓣电影</a></li>
+                        <li><a href="http://www.mtime.com/" target="_blank">时光网</a></li>
                         <li><a href="http://veryyoung.me/" target="_blank">VERYYOUNG</a></li>
                         <li><a href="http://www.minishine.com/" target="_blank">路人-戊</a></li>
                         <li><a href="http://www.zhenghang.info/" target="_blank">COCO</a></li>
