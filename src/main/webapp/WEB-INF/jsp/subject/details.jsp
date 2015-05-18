@@ -18,7 +18,10 @@
                         <img src="${subject.image}">
 
                         <p>相关链接：<a href="${douban}${subject.id}" target="_blank"><span
-                                style="color: #66afe9;">豆瓣链接</span></a></p>
+                                style="color: #66afe9;">豆瓣链接</span></a>
+                        <a href=" https://sepu.org/cse?cx=016039034221689005018:5m7nq2x7-lc&ie=UTF-8&q=&ref=#gsc.q=${subject.title}" target="_blank"><span
+                                style="color: #66afe9;">下载链接</span></a></p>
+
                     </div>
                     <div class="pull-left margin-left-30">
                         <div class="film-name">${subject.title}(${subject.year})</div>
