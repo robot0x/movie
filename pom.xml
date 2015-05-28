@@ -93,11 +93,6 @@
             <version>3.3.2</version>
         </dependency>
         <dependency>
-            <groupId>aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.4</version>
-        </dependency>
-        <dependency>
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
             <version>6.1.9</version>
