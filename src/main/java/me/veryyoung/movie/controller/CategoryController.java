@@ -30,8 +30,8 @@ public class CategoryController extends BaseController {
         if (StringUtils.isNotEmpty(key)) {
             key = key.trim();
             modelAndView.addObject("key", key);
+            doubanService.saveBySearch(key);
         }
-        doubanService.saveBySearch(key);
         return modelAndView;
     }
 
