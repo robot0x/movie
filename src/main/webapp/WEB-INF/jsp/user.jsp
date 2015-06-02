@@ -46,7 +46,8 @@
                                                 </div>
                                                 <div class="title2">
                                                     <div class="pull-left">${user.userName}&nbsp;&nbsp;评论:<a
-                                                            href="/subject/${subject.id}" class="blue">《${subject.title}》</a></div>
+                                                            href="/subject/${subject.id}" class="blue">《${subject.title}》</a>
+                                                    </div>
                                                     <div class="pull-left allstar10 rating"></div>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -81,6 +82,21 @@
                     <div class="margin-top-10"></div>
                     <p>欢迎亲多来瞅瞅~~</p>
                 </div>
+                <div class="margin-top-30"></div>
+
+                <c:if test="${SessionUtils.user.admin}">
+                    <a href="/user/${user.id}/setAdmin">
+                        <c:choose>
+                            <c:when test="${user.admin}">
+                                <button type="button" class="btn btn-danger">取消管理员</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="button" class="btn btn-success">设置为管理员</button>
+                            </c:otherwise>
+                        </c:choose>
+                    </a>
+                </c:if>
+
             </div>
             <div class="clearfix"></div>
         </div>
