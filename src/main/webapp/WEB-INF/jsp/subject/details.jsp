@@ -19,8 +19,9 @@
 
                         <p>相关链接：<a href="${douban}${subject.id}" target="_blank"><span
                                 style="color: #66afe9;">豆瓣链接</span></a>
-                        <a href=" https://sepu.org/cse?cx=016039034221689005018:5m7nq2x7-lc&ie=UTF-8&q=&ref=#gsc.q=${subject.title}" target="_blank"><span
-                                style="color: #66afe9;">下载链接</span></a></p>
+                            <a href=" https://sepu.org/cse?cx=016039034221689005018:5m7nq2x7-lc&ie=UTF-8&q=&ref=#gsc.q=${subject.title}"
+                               target="_blank"><span
+                                    style="color: #66afe9;">下载链接</span></a></p>
 
                     </div>
                     <div class="pull-left margin-left-30">
@@ -72,6 +73,13 @@
                                 <td><span class="badge" style="color: orange; font-weight: bold;"><fmt:formatNumber
                                         value="${subject.rating}" pattern="#.##" minFractionDigits="2"/></span></td>
                             </tr>
+                            <c:if test="${SessionUtils.user.admin}">
+                                <tr>
+                                    <td class="span2"><span class="x-m-label">操作</span></td>
+                                    <td><a class="btn btn-danger" href="/subject/${subject.id}/delete">删除</a>&nbsp;&nbsp;
+                                        <a class="btn btn-info" href="/subject/${subject.id}/edit">编辑</a></td>
+                                </tr>
+                            </c:if>
                             </tbody>
                         </table>
                     </div>

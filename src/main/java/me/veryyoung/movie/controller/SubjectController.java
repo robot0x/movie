@@ -1,9 +1,11 @@
 package me.veryyoung.movie.controller;
 
 import me.veryyoung.movie.dao.CommentDao;
+import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.entity.Subject;
 import me.veryyoung.movie.rest.PageInfo;
+import me.veryyoung.movie.security.AdminRequired;
 import me.veryyoung.movie.service.DoubanService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class SubjectController extends BaseController {
 
     @Autowired
     private CommentDao commentDao;
+
+    @Autowired
+    private SubjectDao subjectDao;
 
     @RequestMapping("/{id}")
     public ModelAndView getSubject(@PathVariable(value = "id") String id, String error) {
@@ -48,6 +53,9 @@ public class SubjectController extends BaseController {
         ModelAndView modelAndView = new ModelAndView("/subject/comments");
         Subject subject = doubanService.find(id);
         modelAndView.addObject("subject", subject);
+        if (null == subject) {
+            return new ModelAndView("/misc/404");
+        }
         PageInfo<Comment> pageInfo = new PageInfo<>(pageNo, 5);
         pageInfo.setTotalRows(subject.getCommentCount());
         if (subject.getCommentCount() > 0) {
@@ -57,5 +65,50 @@ public class SubjectController extends BaseController {
         return modelAndView;
     }
 
+
+    @RequestMapping("/{id}/edit")
+    @AdminRequired
+    public ModelAndView getEdit(@PathVariable(value = "id") String id) {
+        ModelAndView modelAndView = new ModelAndView("/subject/edit");
+        Subject subject = doubanService.find(id);
+        modelAndView.addObject("subject", subject);
+        if (null == subject) {
+            return new ModelAndView("/misc/404");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping("/{id}/update")
+    @AdminRequired
+    public String getUpdate(@PathVariable(value = "id") String id, Subject subject) {
+        Subject storedSubject = doubanService.find(id);
+        if (null == storedSubject) {
+            return "/misc/404";
+        }
+        storedSubject.setDirectors(subject.getDirectors());
+        storedSubject.setCasts(subject.getCasts());
+        storedSubject.setWriters(subject.getWriters());
+        storedSubject.setGenres(subject.getGenres());
+        storedSubject.setCountries(subject.getCountries());
+        storedSubject.setLanguages(subject.getLanguages());
+        storedSubject.setPubDate(subject.getPubDate());
+        storedSubject.setDurations(subject.getDurations());
+        storedSubject.setOriginalTitle(subject.getOriginalTitle());
+        storedSubject.setSummary(subject.getSummary());
+        subjectDao.update(storedSubject);
+        return "redirect:/subject/" + id;
+    }
+
+    @RequestMapping("/{id}/delete")
+    @AdminRequired
+    public String getDelete(@PathVariable(value = "id") String id) {
+        Subject subject = doubanService.find(id);
+        if (null == subject) {
+            return "/misc/404";
+        } else {
+            subjectDao.delete(subject);
+        }
+        return "redirect:/";
+    }
 
 }
