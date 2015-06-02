@@ -64,14 +64,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label">上映时间</label>
-
-            <div class="col-sm-5">
-                <input type="text" class="form-control" name="pubDate"
-                       placeholder="请输入上映时间" value="${subject.pubDate}"/>
-            </div>
-        </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">片长</label>

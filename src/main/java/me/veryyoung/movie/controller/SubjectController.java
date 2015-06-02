@@ -4,6 +4,7 @@ import me.veryyoung.movie.dao.CommentDao;
 import me.veryyoung.movie.dao.SubjectDao;
 import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.entity.Subject;
+import me.veryyoung.movie.qiniu.QiniuUtils;
 import me.veryyoung.movie.rest.PageInfo;
 import me.veryyoung.movie.security.AdminRequired;
 import me.veryyoung.movie.service.DoubanService;
@@ -91,7 +92,6 @@ public class SubjectController extends BaseController {
         storedSubject.setGenres(subject.getGenres());
         storedSubject.setCountries(subject.getCountries());
         storedSubject.setLanguages(subject.getLanguages());
-        storedSubject.setPubDate(subject.getPubDate());
         storedSubject.setDurations(subject.getDurations());
         storedSubject.setOriginalTitle(subject.getOriginalTitle());
         storedSubject.setSummary(subject.getSummary());
@@ -107,6 +107,7 @@ public class SubjectController extends BaseController {
             return "/misc/404";
         } else {
             subjectDao.delete(subject);
+            QiniuUtils.deleteFromQiniu(id);
         }
         return "redirect:/";
     }

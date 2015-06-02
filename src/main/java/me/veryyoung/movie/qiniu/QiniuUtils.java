@@ -5,6 +5,8 @@ import com.qiniu.api.auth.digest.Mac;
 import com.qiniu.api.net.CallRet;
 import com.qiniu.api.net.Client;
 import com.qiniu.api.net.EncodeUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by veryyoung on 2015/3/26.
@@ -20,6 +22,8 @@ public class QiniuUtils {
 
     public static final String QINIU_URL = "http://7xia3v.com1.z0.glb.clouddn.com/";
 
+    private static Logger logger = LoggerFactory.getLogger(QiniuUtils.class);
+
     /**
      * 上传对应主题的图片到七牛云
      */
@@ -31,6 +35,17 @@ public class QiniuUtils {
         Mac mac = new com.qiniu.api.auth.digest.Mac(QiniuUtils.ACCESS_KEY, QiniuUtils.SECRET_KEY);
         Client client = new DigestAuthClient(mac);
         CallRet ret = client.call(url);
+        logger.info("upload image :{} to :{},response is:{}", from, subjectId, ret);
+    }
+
+    public static void deleteFromQiniu(String subjectId) {
+        String encodeTo = EncodeUtils.urlsafeEncode(BUCKET_NAME.concat(":").concat(subjectId));
+        String url = "http://rs.qiniu.com/delete/" + encodeTo;
+        Mac mac = new com.qiniu.api.auth.digest.Mac(QiniuUtils.ACCESS_KEY, QiniuUtils.SECRET_KEY);
+        Client client = new DigestAuthClient(mac);
+        CallRet ret = client.call(url);
+        logger.info("delete image:{},response is:{}", subjectId, ret);
+
     }
 }
 
