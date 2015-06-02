@@ -5,6 +5,7 @@ import me.veryyoung.movie.dao.UserDao;
 import me.veryyoung.movie.entity.Comment;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.rest.PageInfo;
+import me.veryyoung.movie.security.AdminRequired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +44,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/{id}/setAdmin")
+    @AdminRequired
     public String setAdmin(@PathVariable(value = "id") String id) {
         User user = userDao.find(id);
         if (null == user) {

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>错误500 - ${appName}</title>
+    <title>没有操作权限 - ${appName}</title>
     <%@include file="../common/head.jspf" %>
 </head>
 <body>
@@ -14,13 +14,12 @@
     <div class="jumbotron">
         <h1><span class="glyphicon glyphicon-fire red"></span> ${appName}</h1>
 
-        <p class="lead">服务器内部错误 <em><span id="display-domain"></span></em>.
+        <p class="lead">对不起，你没有对应的权限<em><span id="display-domain"></span></em>.
         </p>
-        <a href="javascript:document.location.reload(true);" class="btn btn-default btn-lg text-center"><span
-                class="green">重试</span></a>
+        <a href="/" class="btn btn-default btn-lg text-center"><span
+                class="green">返回首页</span></a>
     </div>
 </div>
-
 <div class="margin-bottom-100"></div>
 <%@include file="../common/footer.jspf" %>
 </body>

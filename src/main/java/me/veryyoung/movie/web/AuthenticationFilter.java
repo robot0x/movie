@@ -1,5 +1,7 @@
 package me.veryyoung.movie.web;
 
+import me.veryyoung.movie.entity.User;
+import me.veryyoung.movie.security.AdminRequired;
 import me.veryyoung.movie.security.FreeAccess;
 import me.veryyoung.movie.security.LoginRequired;
 import me.veryyoung.movie.utils.ContextUtils;
@@ -26,9 +28,10 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
             return true;
         }
 
-
+        boolean adminRequired = AnnotationUtils.findAnnotation(method.getBean().getClass(), AdminRequired.class) != null
+                || method.getMethodAnnotation(AdminRequired.class) != null;
         boolean loginRequired = AnnotationUtils.findAnnotation(method.getBean().getClass(), LoginRequired.class) != null
-                || method.getMethodAnnotation(LoginRequired.class) != null;
+                || method.getMethodAnnotation(LoginRequired.class) != null || adminRequired;
         if (loginRequired && !checkLogin(request)) {
             String url = request.getRequestURI();
             String queryString = request.getQueryString();
@@ -52,12 +55,28 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
             return false;
         }
 
+        if (adminRequired && !checkAdmin(request)) {
+            response.setStatus(403);
+            response.sendRedirect("/403");
+            return false;
+        }
+
+
         return true;
     }
 
 
     public boolean checkLogin(HttpServletRequest request) {
         return ContextUtils.getSessionUtils(request).getUser() != null;
+    }
+
+    public boolean checkAdmin(HttpServletRequest request) {
+        User user = ContextUtils.getSessionUtils(request).getUser();
+        if (user == null) {
+            return false;
+        } else {
+            return user.isAdmin();
+        }
     }
 
 }

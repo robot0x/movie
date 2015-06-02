@@ -119,5 +119,9 @@ public class HomeController extends BaseController {
         return "redirect:/";
     }
 
+    @RequestMapping("403")
+    public String get403() {
+        return "/misc/403";
+    }
 
 }
