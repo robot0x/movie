@@ -96,6 +96,11 @@
                         </c:choose>
                     </a>
                 </c:if>
+                <c:if test="${SessionUtils.user.id eq user.id}">
+                    <a href="/password">
+                        <button type="button" class="btn btn-info">修改密码</button>
+                    </a>
+                </c:if>
 
             </div>
             <div class="clearfix"></div>

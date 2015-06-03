@@ -3,6 +3,7 @@ package me.veryyoung.movie.controller;
 import me.veryyoung.movie.dao.UserDao;
 import me.veryyoung.movie.entity.User;
 import me.veryyoung.movie.rest.RestData;
+import me.veryyoung.movie.security.LoginRequired;
 import me.veryyoung.movie.service.DoubanService;
 import me.veryyoung.movie.service.UserService;
 import me.veryyoung.movie.utils.ContextUtils;
@@ -111,6 +112,32 @@ public class HomeController extends BaseController {
             modelAndView.addObject("error", "用户名或密码错误");
             return modelAndView;
         }
+    }
+
+    @RequestMapping(value = "/password", method = RequestMethod.GET)
+    public String getPassword() {
+        return "/password";
+    }
+
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    @LoginRequired
+    public ModelAndView postPassword(String oldPassword, String newPassword, String captcha) {
+        ModelAndView modelAndView = new ModelAndView("/password");
+        if (!WebUtils.checkCaptcha(request, captcha)) {
+            modelAndView.addObject("error", "验证码错误");
+            return modelAndView;
+        }
+
+        User user = ContextUtils.getUser(request);
+        if (user.getPassword().equals(DigestUtils.md5Hex(oldPassword))) {
+            user.setPassword(DigestUtils.md5Hex(newPassword));
+            userDao.update(user);
+            return new ModelAndView("redirect:/");
+        } else {
+            modelAndView.addObject("error", "原密码输入错误");
+        }
+        return modelAndView;
+
     }
 
     @RequestMapping("logout")
