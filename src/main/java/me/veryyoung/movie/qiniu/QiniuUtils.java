@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
 public class QiniuUtils {
 
 
-    public static final String ACCESS_KEY = "1OcsILqPu9A_YrO7bgAEBowPWwmjTfzt_zUoINRC";
+    public static final String ACCESS_KEY = "";
 
-    public static final String SECRET_KEY = "BW1s2xfqoty1RRzNI4xhVMs6dt6i7zjf3FdbX9Ty";
+    public static final String SECRET_KEY = "";
 
     private static final String BUCKET_NAME = "movie";
 
